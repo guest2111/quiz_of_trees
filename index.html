@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Stylesheet -->
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
     <title>Document</title>
 </head>
 <body>
@@ -50,18 +50,20 @@
 
             <label> Duration </label>
             <div class="btn-group">
-                <input type="radio" id="open" name="duration" value="open" checked required>
+                <input type="radio" id="open" name="duration" value="open" onclick="selecting_open()" checked required>
                 <label for="open"> Open (with time malus) </label>
-                <input type="radio" id="number" name="duration" value="fixed_questions" required>
+                <input type="radio" id="number" name="duration" value="fixed_questions" onclick="selecting_maxNumber()" required>
                 <label for="number"> Number of questions: </label>
-                <input type="number" id="number_questions" name="duration"
+                <input type="number" id="number_questions" name="duration" disabled="false"
                     min="1" max="9">
-                <input type="radio" id="duration" name="duration" value="fixed_duration" required>
+                <input type="radio" id="duration" name="duration" value="fixed_duration" onclick="selecting_maxTime()" required>
                 <label for="duration"> Duration in minutes: </label>
-                <input type="number" id="duration_minutes" name="duration"
-                    min="1" max="9">
+                <input type="number" id="duration_minutes" name="duration" disabled="false"
+                    min="1" max="9" value="2">
             </div>
         </form>
     </section>
+    <!-- adding functions -->
+    <script src="assets/js/setting_behaviour.js"></script>
 </body>
 </html>
