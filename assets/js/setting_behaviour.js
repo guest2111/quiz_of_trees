@@ -34,3 +34,19 @@ function selecting_open(){
     disable_maxTime();
     disable_maxNumber();
 }
+
+function start_game(event){
+    event.preventDefault();
+    console.log('start called');
+    console.log(settings);
+    let form = document.getElementById('form_setting');
+    localStorage.setItem("geoLoc",      form.elements['geoLoc'].value);
+    localStorage.setItem("difficulty",  form.elements['difficulty'].value);
+    localStorage.setItem("environment", form.elements['environment'].value);
+    localStorage.setItem("language",    form.elements['language'].value);
+    localStorage.setItem("duration",    form.elements['duration'].value);
+    form.submit();
+}
+
+let form = document.getElementById('form_setting');
+form.addEventListener('submit',start_game);
