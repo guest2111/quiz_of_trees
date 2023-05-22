@@ -14,5 +14,12 @@ console.log(difficulty);
 console.log(environment); 
 console.log(language); 
 console.log(duration); 
+if (duration == 'fixed_questions'){
+    let duration_quest = localStorage.getItem('duration_quest');
+    console.log(duration_quest);
+} else if (duration == 'fixed_duration'){
+    let duration_time = localStorage.getItem('duration_time');
+    console.log(duration_time);
+}
 
 console.log('game over');

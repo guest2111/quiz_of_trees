@@ -45,6 +45,11 @@ function start_game(event){
     localStorage.setItem("environment", form.elements['environment'].value);
     localStorage.setItem("language",    form.elements['language'].value);
     localStorage.setItem("duration",    form.elements['duration'].value);
+    if (form.elements['duration'].value == 'fixed_questions'){
+        localStorage.setItem("duration_quest", form.elements['duration_quest'].value);
+    } else if (form.elements['duration'].value == 'fixed_duration'){
+        localStorage.setItem("duration_time", form.elements['duration_time'].value);
+    }
     form.submit();
 }
 
