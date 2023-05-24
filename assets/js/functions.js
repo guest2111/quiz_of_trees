@@ -22,6 +22,7 @@ function makeSpecieFoldername(specie){
  * @returns element
  */
 function selectRandomElement(elements){
+    if (elements.length == 0){return []}
     let nmax = elements.length;
     return elements[getRandomInt(nmax)];
 }
