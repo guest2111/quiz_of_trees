@@ -36,18 +36,20 @@ while (true){
     querryCriteria = selectRandomElement(characteristic);
     randImg = selectRandomElement( getAvailablePictures( makeSpecieFoldername(querrySpecie.latin[0]),querryCriteria ));
     count++;
-    if(count>10){break}
+    if(count>99){break}
     if(randImg.length > 0){break} 
 }
 console.log(`I needed ${count} attempts to find a specie and criteria where at least one image is available`);
 console.log(`chosen image is ${randImg}`);
 
+let correctAnswer = selectRandomElement( querrySpecie[language] );
+console.log(`correct answer is: ${correctAnswer}`);
 let offers = [];
-let possible = species.slice();
+let possible = removeElement(species.slice(),querrySpecie);
 while (offers.length < 3){
     let i = getRandomInt(possible.length);
     // let ad = possible.pop(i);
-    offers.push(selectRandomElement( possible.pop(i).german ));
+    offers.push(selectRandomElement( possible.pop(i)[language] ));
 }
 for(let o of offers){console.log(o);};
 
@@ -83,6 +85,19 @@ img.setAttribute('alt','quiz image, which tree sort is it?');
 console.log('trying to set img src to: '+randImg);
 img.setAttribute('src',randImg);
 master.appendChild(img);
+
+// mix offers and correct solution
+offers.push(correctAnswer);
+offers = shuffle(offers);
+// append offers
+let lst = document.createElement('ol');
+for (let o of offers){
+    let it = document.createElement('it');
+    it.textContent = o;
+    lst.appendChild(it);
+}
+master.appendChild(lst);
+
 console.log(master.outerHTML);
 
 // append html structure to page
