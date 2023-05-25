@@ -54,6 +54,29 @@ for(let o of offers){console.log(o);};
 // build question html structure
 let master = document.createElement('p');
 master.setAttribute('class','querryPicture');
+// question text
+let quest = document.createElement('p');
+quest.setAttribute('class','questText');
+switch (querryCriteria){
+    case 'bark':
+        quest.textContent = 'Judging be the bark which tree could it be?'; break;
+    case 'leaf':
+        quest.textContent = 'Which tree has this leafes?'; break;
+    case 'flower':
+        quest.textContent = 'On which tree can you see such flower?'; break;
+    case 'bud':
+        quest.textContent = 'Which tree has such bud?'; break;
+    case 'fruit':
+        quest.textContent = 'This is the fruit of which specie?'; break;
+    case 'whole':
+        quest.textContent = 'Which tree appears as a whole like this?'; break;
+    case 'wood':
+        quest.textContent = 'Which tree has such wood?'; break;
+    default:
+        quest.textContent = `Which tree is it according to the criteria of ${querryCriteria}?`;
+};
+master.appendChild(quest);
+
 let img = document.createElement('img');
 img.setAttribute('alt','quiz image, which tree sort is it?');
 
