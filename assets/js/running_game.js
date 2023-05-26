@@ -113,20 +113,41 @@ function createQuestionHTMLStructure(quest,correctAnswer,possibleAnswers){
     for (let o of possibleAnswers){
         let it = document.createElement('it');
         it.textContent = o;
-        it.addEventListener('click',nextQuestion);
+        it.addEventListener('click',checkAnswer);
         lst.appendChild(it);
     }
     master.appendChild(lst);
     return master;
 }
 
+/** list all values of the attribute of elements in array
+ * 
+ * @param {array of structure elements} arr 
+ * @param {Attribute} attr 
+ */
+function retrieveAttributeContentsOfArrayObjects(arr,attr){
+    let ans = [];
+    for (let a of arr){
+        ans.push(a[attr]);
+    };
+    return ans;
+}
+
 function addQuestion(hist){
+    hist.push(hist_template);
+    let indexHist = hist.length - 1;
     // get a random specie and criteria (deselection rules later)
-    quest = getPossibleQuest('easy','anywhere',hist.images);
-    hist.images.push(quest.randImg);
+    console.log('hist of hist   : ',hist);
+    let imgHist = retrieveAttributeContentsOfArrayObjects(hist,'images');
+    console.log('hist of images: ',imgHist);
+    quest = getPossibleQuest('easy','anywhere',imgHist);
+    hist[indexHist].images.push(quest.randImg);
 
     correctAnswer = chooseCorrectAnswerText(quest.Specie);
     offers        = chooseOffers(quest.Specie);
+    hist[indexHist].correctAnswer = correctAnswer;
+    hist[indexHist].nrAnswers = offers.length;
+    
 
     questionHTML = createQuestionHTMLStructure(quest,correctAnswer,offers);
 
@@ -138,13 +159,50 @@ function addQuestion(hist){
     area.appendChild(questionHTML);
 }
 
-function nextQuestion(){
+function checkAnswer(){
     console.log('Success');
+    console.log(this.textContent);
+    let indexHist = hist.length - 1;
+    // hist[indexHist].chosenItems.push(this);
+    hist[indexHist].chosenAnswers.push(this.textContent);
+    console.log('confirm: '+hist[indexHist].chosenAnswers[hist[indexHist].chosenAnswers.length-1]);
+    // console.log(hist.chosenAnswer[hist.chosenAnswer.length-1]);
+    // console.log(hist.correctAnswer[hist.correctAnswer.length-1]);
+    // console.log(hist.chosenAnswer[hist.chosenAnswer.length-1]==hist.correctAnswer[hist.correctAnswer.length-1]);
+    if(hist[indexHist].chosenAnswers[hist[indexHist].chosenAnswers.length-1]==hist[indexHist].correctAnswer){
+        this.style.backgroundColor = "#11FF00";
+        // console.log('color to green');
+        nextQuestion();
+    } else {
+        this.style.backgroundColor = "#FF1100";
+        // console.log('color to red');
+        // points = 1 - n_wrong/n_wrong_max
+        hist[indexHist].points = 1 - hist[indexHist].chosenAnswers.length*1/(hist[indexHist].nrAnswers);
+    } 
+    console.log(correctAnswer);
+    console.log(hist);
+    console.log('clicked');
+    console.log(hist[indexHist].points);
 }
 
-let hist = {
-    images: [],
+function nextQuestion(){
+    let quizSec = document.getElementById('quizSection');
+    for (let c of quizSec.children){
+        c.hidden = true;
+    }
+    addQuestion(hist);
 }
+
+let hist = [];
+let hist_template = {
+    questionIndex: null,
+    images: [],
+    points: 1,
+    nrAnswers: 0,
+    correctAnswer: '',
+    chosenAnswers: [],
+};
 addQuestion(hist);
+console.log(hist);
 console.log('game over');
 });
