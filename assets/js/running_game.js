@@ -25,87 +25,126 @@ if (duration == 'fixed_questions'){
     console.log(duration_time);
 }
 
-// get a random specie and criteria (deselection rules later)
-let randImg = '';
-console.log('randImg is of type: ',typeof(randImg), ' and has the length: ',randImg.length);
-let querrySpecie = null;
-let querryCriteria = '';
-let count = 0;
-while (true){
-    querrySpecie = selectRandomElement(species);
-    querryCriteria = selectRandomElement(characteristic);
-    randImg = selectRandomElement( getAvailablePictures( makeSpecieFoldername(querrySpecie.latin[0]),querryCriteria ));
-    count++;
-    if(count>99){break}
-    if(randImg.length > 0){break} 
+/** try to find specie-criteria-image combination which exists 
+ *      and which has not been asked before
+ * 
+ * @param {*} difficulty 
+ * @param {*} location 
+ * @returns struct : {'Specie','Criteria','randImg'}
+ */
+function getPossibleQuest(difficulty,location,previousImages){
+    let q = {};
+    q.randImg = '';
+    console.log('randImg is of type: ',typeof(q.randImg), ' and has the length: ',q.randImg.length);
+    q.Specie = null;
+    q.Criteria = '';
+    let count = 0;
+    while (true){
+        q.Specie = selectRandomElement(species);
+        q.Criteria = selectRandomElement(characteristic);
+        q.randImg = selectRandomElement( getAvailablePictures( makeSpecieFoldername(q.Specie.latin[0]),q.Criteria ));
+        if (previousImages.indexOf(q.randImg) > -1){q.randImg = ''};
+        count++;
+        if(count>99){break}
+        if(q.randImg.length > 0){break} 
+    }
+    console.log(`I needed ${count} attempts to find a specie and criteria where at least one image is available`);
+    console.log(`chosen image is ${q.randImg}`);
+    return q;
 }
-console.log(`I needed ${count} attempts to find a specie and criteria where at least one image is available`);
-console.log(`chosen image is ${randImg}`);
 
-let correctAnswer = selectRandomElement( querrySpecie[language] );
-console.log(`correct answer is: ${correctAnswer}`);
-let offers = [];
-let possible = removeElement(species.slice(),querrySpecie);
-while (offers.length < 3){
-    let i = getRandomInt(possible.length);
-    // let ad = possible.pop(i);
-    offers.push(selectRandomElement( possible.pop(i)[language] ));
+function chooseCorrectAnswerText(specie){
+    let correctAnswer = selectRandomElement( specie[language] );
+    console.log(`correct answer is: ${correctAnswer}`);
+    return correctAnswer
 }
-for(let o of offers){console.log(o);};
 
-// build question html structure
-let master = document.createElement('p');
-master.setAttribute('class','querryPicture');
-// question text
-let quest = document.createElement('p');
-quest.setAttribute('class','questText');
-switch (querryCriteria){
-    case 'bark':
-        quest.textContent = 'Judging be the bark which tree could it be?'; break;
-    case 'leaf':
-        quest.textContent = 'Which tree has this leafes?'; break;
-    case 'flower':
-        quest.textContent = 'On which tree can you see such flower?'; break;
-    case 'bud':
-        quest.textContent = 'Which tree has such bud?'; break;
-    case 'fruit':
-        quest.textContent = 'This is the fruit of which specie?'; break;
-    case 'whole':
-        quest.textContent = 'Which tree appears as a whole like this?'; break;
-    case 'wood':
-        quest.textContent = 'Which tree has such wood?'; break;
-    default:
-        quest.textContent = `Which tree is it according to the criteria of ${querryCriteria}?`;
-};
-master.appendChild(quest);
-
-let img = document.createElement('img');
-img.setAttribute('alt','quiz image, which tree sort is it?');
-
-console.log('trying to set img src to: '+randImg);
-img.setAttribute('src',randImg);
-master.appendChild(img);
-
-// mix offers and correct solution
-offers.push(correctAnswer);
-offers = shuffle(offers);
-// append offers
-let lst = document.createElement('ol');
-for (let o of offers){
-    let it = document.createElement('it');
-    it.textContent = o;
-    lst.appendChild(it);
+function chooseOffers(specie){
+    let offers = [];
+    let possible = removeElement(species.slice(),specie);
+    while (offers.length < 3){
+        let i = getRandomInt(possible.length);
+        // let ad = possible.pop(i);
+        offers.push(selectRandomElement( possible.pop(i)[language] ));
+    }
+    for(let o of offers){console.log(o);};
+    return offers
 }
-master.appendChild(lst);
 
-console.log(master.outerHTML);
+function createQuestionHTMLStructure(quest,correctAnswer,possibleAnswers){
+    // build question html structure
+    let master = document.createElement('div');
+    master.setAttribute('class','querryPicture');
+    // question text
+    let q = document.createElement('p');
+    q.setAttribute('class','questText');
+    switch (quest.Criteria){
+        case 'bark':
+            q.textContent = 'Judging be the bark which tree could it be?'; break;
+        case 'leaf':
+            q.textContent = 'Which tree has this leafes?'; break;
+        case 'flower':
+            q.textContent = 'On which tree can you see such flower?'; break;
+        case 'bud':
+            q.textContent = 'Which tree has such bud?'; break;
+        case 'fruit':
+            q.textContent = 'This is the fruit of which specie?'; break;
+        case 'whole':
+            q.textContent = 'Which tree appears as a whole like this?'; break;
+        case 'wood':
+            q.textContent = 'Which tree has such wood?'; break;
+        default:
+            q.textContent = `Which tree is it according to the criteria of ${querryCriteria}?`;
+    };
+    master.appendChild(q);
+    
+    let img = document.createElement('img');
+    img.setAttribute('alt','quiz image, which tree sort is it?');
+    
+    console.log('trying to set img src to: '+quest.randImg);
+    img.setAttribute('src',quest.randImg);
+    master.appendChild(img);
+    
+    // mix possibleAnswers and correct solution
+    possibleAnswers.push(correctAnswer);
+    possibleAnswers = shuffle(possibleAnswers);
+    // append possibleAnswers
+    let lst = document.createElement('ol');
+    for (let o of possibleAnswers){
+        let it = document.createElement('it');
+        it.textContent = o;
+        it.addEventListener('click',nextQuestion);
+        lst.appendChild(it);
+    }
+    master.appendChild(lst);
+    return master;
+}
 
-// append html structure to page
-let area = document.getElementById('quizSection');
-console.log(area.outerHTML);
-area.appendChild(master);
+function addQuestion(hist){
+    // get a random specie and criteria (deselection rules later)
+    quest = getPossibleQuest('easy','anywhere',hist.images);
+    hist.images.push(quest.randImg);
 
+    correctAnswer = chooseCorrectAnswerText(quest.Specie);
+    offers        = chooseOffers(quest.Specie);
+
+    questionHTML = createQuestionHTMLStructure(quest,correctAnswer,offers);
+
+    // console.log(questionHTML.outerHTML);
+
+    // append html structure to page
+    let area = document.getElementById('quizSection');
+    console.log(area.outerHTML);
+    area.appendChild(questionHTML);
+}
+
+function nextQuestion(){
+    console.log('Success');
+}
+
+let hist = {
+    images: [],
+}
+addQuestion(hist);
 console.log('game over');
-
-
 });
