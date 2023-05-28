@@ -132,7 +132,8 @@ function createQuestionHTMLStructure(quest,correctAnswer,possibleAnswers){
 function retrieveAttributeContentsOfArrayObjects(arr,attr){
     let ans = [];
     for (let a of arr){
-        ans.push(a[attr]);
+        // ans.push(a[attr]);
+        ans = ans.concat(a[attr]);
     };
     return ans;
 }
@@ -191,8 +192,6 @@ function addQuestion(hist){
     
 
     questionHTML = createQuestionHTMLStructure(quest,correctAnswer,offers);
-
-    // console.log(questionHTML.outerHTML);
 
     // append html structure to page
     let area = document.getElementById('quizSection');
