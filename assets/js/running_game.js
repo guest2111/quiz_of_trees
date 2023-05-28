@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     //the event occurred
     console.log('dom loaded');
 
+const start = performance.now();
+
 console.log(window.location);
 // for (i in window.location){
 //     console.log(i+' ');
@@ -12,18 +14,20 @@ let environment = localStorage.getItem("environment");
 let language = localStorage.getItem("language"   ); 
 let duration = localStorage.getItem("duration"   ); 
 
+let time_needed = 999;
+let nr_now = 0;
+let time_start = performance.now();
+
 console.log(geoLoc); 
 console.log(difficulty); 
 console.log(environment); 
 console.log(language); 
 console.log(duration); 
-if (duration == 'fixed_questions'){
-    let duration_quest = localStorage.getItem('duration_quest');
-    console.log(duration_quest);
-} else if (duration == 'fixed_duration'){
-    let duration_time = localStorage.getItem('duration_time');
-    console.log(duration_time);
-}
+let duration_quest = localStorage.getItem('duration_quest');
+console.log(duration_quest);
+let duration_time = localStorage.getItem('duration_time');
+console.log(duration_time);
+
 
 /** try to find specie-criteria-image combination which exists 
  *      and which has not been asked before
@@ -133,7 +137,44 @@ function retrieveAttributeContentsOfArrayObjects(arr,attr){
     return ans;
 }
 
+/** checks wheather end condition is fullfilled
+ * 
+ * @returns boolean
+ */
+function checkEndReached(){
+    let bool_end = false;
+    console.log(`duration start ${time_start}`);
+    console.log(`duration now ${performance.now()}`);
+    console.log(`duration so far ${(performance.now()-time_start)/1000}`);
+    console.log(`numbers of questions so far ${nr_now}`);
+    if( duration=='open'){
+        // pass;
+    } else if( duration=='fixed_duration'){
+        if( (performance.now()-time_start)/1000 > duration_time*60 ){
+            time_needed = (performance.now()-time_start)/1000;
+            bool_end = true;
+        }
+    } else if( duration=='fixed_questions'){
+        if(nr_now == duration_quest){
+            time_needed = (performance.now()-time_start)/1000;
+            bool_end = true;
+        }
+    }
+    return bool_end;
+}
+
+/** add next question to DOM
+ * 
+ * @param {struct} hist - structure containing used images so far and given answers and reached points
+ */
 function addQuestion(hist){
+    if(checkEndReached()){
+        evaluate();
+        return ;
+    } else {
+        // pass;
+    }
+    nr_now += 1;
     hist.push(hist_template);
     let indexHist = hist.length - 1;
     // get a random specie and criteria (deselection rules later)
@@ -157,6 +198,14 @@ function addQuestion(hist){
     let area = document.getElementById('quizSection');
     console.log(area.outerHTML);
     area.appendChild(questionHTML);
+}
+
+function evaluate(){
+    console.log('evalutae finally');
+    let sec = document.getElementById('quizSection');
+    for (let c of sec.children){
+        c.hidden = false;
+    }
 }
 
 function checkAnswer(){
@@ -205,4 +254,6 @@ let hist_template = {
 addQuestion(hist);
 console.log(hist);
 console.log('game over');
+
+
 });
