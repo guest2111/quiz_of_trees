@@ -224,8 +224,8 @@ function evaluate(){
     div.innerHTML = 
         `
         <h1> Results </h1>
-        <p> You have needed <div class='resNum';>${minutes}</div> minutes and <div class='resNum';>${seconds}</div> seconds.</p>
-        <p> You have received <div class='resNum';>${points}</div> out of <div class='resNum';>${hist.length}</div> maximal points.</p>
+        <div> You have needed <span class='resNum';>${minutes}</span> minutes and <span class='resNum';>${Math.floor(seconds)}</span> seconds.</div>
+        <div> You have received <span class='resNum';>${points}</span> out of <span class='resNum';>${hist.length}</span> maximal points.</div>
         `;
     insertAsFirstChild(sec,div);
     for (let c of sec.children){
