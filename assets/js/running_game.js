@@ -75,11 +75,7 @@ function chooseOffers(specie){
     return offers
 }
 
-function createQuestionHTMLStructure(quest,correctAnswer,possibleAnswers){
-    // build question html structure
-    let master = document.createElement('div');
-    master.setAttribute('class','querryPicture');
-    // question text
+function pQuestionText(criteria){
     let q = document.createElement('p');
     q.setAttribute('class','questText');
     switch (quest.Criteria){
@@ -100,6 +96,14 @@ function createQuestionHTMLStructure(quest,correctAnswer,possibleAnswers){
         default:
             q.textContent = `Which tree is it according to the criteria of ${querryCriteria}?`;
     };
+    return q;
+}
+function createQuestionHTMLStructure(quest,correctAnswer,possibleAnswers){
+    // build question html structure
+    let master = document.createElement('div');
+    master.setAttribute('class','querryPicture');
+    // question text
+    let q = pQuestionText(quest.Criteria);
     master.appendChild(q);
     
     let img = document.createElement('img');
@@ -188,8 +192,10 @@ function addQuestion(hist){
     console.log('hist of hist   : ',hist);
     let imgHist = retrieveAttributeContentsOfArrayObjects(hist,'images');
     console.log('hist of images: ',imgHist);
-    quest = getPossibleQuest('easy','anywhere',imgHist);
+    quest = getPossibleQuest('easy','any',imgHist);
     hist[indexHist].images.push(quest.randImg);
+    hist[indexHist].specie = quest.Specie;
+    hist[indexHist].criteria.push = quest.Criteria;
 
     correctAnswer = chooseCorrectAnswerText(quest.Specie);
     offers        = chooseOffers(quest.Specie);
@@ -230,7 +236,7 @@ function evaluate(){
         `
         <h1> Results </h1>
         <div> You have needed <span class='resNum';>${minutes}</span> minutes and <span class='resNum';>${Math.floor(seconds)}</span> seconds.</div>
-        <div> You have received <span class='resNum';>${points}</span> out of <span class='resNum';>${hist.length}</span> maximal points.</div>
+        <div> You have received <span class='resNum';>${Math.floor(points*100)/100}</span> out of <span class='resNum';>${hist.length}</span> maximal points.</div>
         `;
     insertAsFirstChild(sec,div);
     for (let c of sec.children){
@@ -278,13 +284,57 @@ function nextQuestion(){
     addQuestion(hist);
 }
 
+function anotherPicture(){
+    console.log('requested another picture');
+    console.log(hist);
+    let quests = document.getElementsByClassName('querryPicture');
+    let last = quests[quests.length-1];
+    let ps = last.getElementsByTagName('p');
+    for(let p of ps){
+        p.hidden = true;
+    }
+    let pics = last.getElementsByTagName('img');
+    for(let img of pics){
+        img.hidden = true;
+    }
+    // get another picture
+    let newPic = '/assets/images/nice_unspecific/IMG_20230514_140548.jpg';
+    // insert
+    let ol = last.getElementsByTagName('ol')[0];
+    let img = document.createElement('img');
+    img.setAttribute('src',newPic);
+    console.log(last);
+    console.log(last.innerHTML);
+    console.log(img);
+    console.log(ol);
+    last.insertBefore(img,ol);
+}
+
+// wrapper for evaluate to remove EventListener from button before evaluating
+function evaluateByButton(){
+    let btn = document.getElementById('finish');
+    btn.removeEventListener('click',evaluate);
+    evaluate();
+}
 function addFinishButton(){
     let cmdArea = document.getElementById('commands');
     let div = cmdArea.children[0];
-    let btn = document.createElement('button');evaluate
+    let btn = document.createElement('button');
     btn.setAttribute("class",'btn-group btn-cmd');
+    btn.setAttribute("id",'finish');
     btn.addEventListener('click',evaluate);
     btn.textContent = 'Finish!';
+    div.appendChild(btn);
+}
+
+function addRequestPictureButton(){
+    let cmdArea = document.getElementById('commands');
+    let div = cmdArea.children[0];
+    let btn = document.createElement('button');
+    btn.setAttribute("class",'btn-group btn-cmd');
+    btn.setAttribute("id",'requestPic');
+    btn.addEventListener('click',anotherPicture);
+    btn.textContent = 'Give me another picture!';
     div.appendChild(btn);
 }
 
@@ -293,6 +343,8 @@ function hist_template(){
     return {
         questionIndex: null,
         images: [],
+        specie: '',
+        criteria: [],
         points: 1,
         nrAnswers: 0,
         correctAnswer: '',
@@ -300,6 +352,7 @@ function hist_template(){
     };
 }
 addFinishButton();
+addRequestPictureButton();
 addQuestion(hist);
 console.log(hist);
 console.log('game over');

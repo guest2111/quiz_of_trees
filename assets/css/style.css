@@ -76,3 +76,7 @@ it:hover {
     align-items: center;
     flex-direction: column;
 }
+#commands>div {
+    display: flex;
+    flex-direction: row;
+}
