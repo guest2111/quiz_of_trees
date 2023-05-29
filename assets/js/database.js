@@ -105,7 +105,7 @@ let species = [
     geoLoc: 'Middle_Europe',
     location: ['settlement','nature'],
     difficulty: 1, // 0/1/2/3
-    english: ['Aple'],
+    english: ['Apple'],
     german: ['Apfel'],
     latin: ['Malus'],
   },
