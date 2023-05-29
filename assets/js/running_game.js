@@ -201,7 +201,27 @@ function addQuestion(hist){
 
 function evaluate(){
     console.log('evalutae finally');
+    // adding topic
     let sec = document.getElementById('quizSection');
+    let div = document.createElement('div');
+    let secTot = (performance.now()-time_start)/1000 ; 
+    let seconds = secTot%60;
+    let minutes = (secTot-seconds)/60;
+    let points = 0;
+    for (let i=0; i<hist.length; i++){
+        points += hist.points;
+    };
+    console.log('results');
+    console.log(points);
+    console.log(hist);
+    div.setAttribute('class','result');
+    div.innerHTML = 
+        `
+        <h1> Results </h1>
+        <p> You have needed <div class='resNum';>${minutes}</div> minutes and <div class='resNum';>${seconds}</div> seconds.</p>
+        <p> You have received <div class='resNum';>${points}</div> out of <div class='resNum';>${hist.nr_now}</div> maximal points.</p>
+        `;
+    insertAsFirstChild(sec,div);
     for (let c of sec.children){
         c.hidden = false;
     }
@@ -229,6 +249,10 @@ function checkAnswer(){
     } 
     console.log(correctAnswer);
     console.log(hist);
+    console.log('calculate points for this one');
+    console.log(hist[indexHist].chosenAnswers);
+    console.log(`needed answers: ${hist[indexHist].chosenAnswers.length}`);
+    console.log('number of possible answers: '+hist[indexHist].nrAnswers);
     console.log('clicked');
     console.log(hist[indexHist].points);
 }

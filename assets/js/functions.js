@@ -16,6 +16,26 @@ function makeSpecieFoldername(specie){
     return specie.toLowerCase().replace(' ','_');
 }
 
+/** add the newNode as first child to the element of parentID regardless of how many children already exist
+ * 
+ * @param {string} parentID - ID of parent element 
+ * @param {HTMLElement} newNode - element created with document.createElement() 
+ */
+function insertAsFirstChild(parentID,newNode){
+    let pN = null;
+    if (typeof(parentID) == 'string'){
+        pN = document.getElementById(parentID);
+    } else if (typeof(parentID)=='object'){
+        pN = parentID;
+    }
+    if (pN.children.length > 0){
+        let firstChild = pN.children[0];
+        pN.insertBefore(newNode,firstChild);
+    } else {
+        pN.appendChild(newNode);
+    }
+}
+
 /** return random element of list
  * 
  * @param {list} species 
