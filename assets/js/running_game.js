@@ -206,6 +206,11 @@ function addQuestion(hist){
 }
 
 function evaluate(){
+    // removing click events from items
+    let its = document.getElementsByTagName('it');
+    for (let it of its){
+        it.removeEventListener('click',checkAnswer);
+    }
     console.log('evalutae finally');
     // adding topic
     let sec = document.getElementById('quizSection');
@@ -276,7 +281,7 @@ function nextQuestion(){
 function addFinishButton(){
     let cmdArea = document.getElementById('commands');
     let div = cmdArea.children[0];
-    let btn = document.createElement('button');
+    let btn = document.createElement('button');evaluate
     btn.setAttribute("class",'btn-group btn-cmd');
     btn.addEventListener('click',evaluate);
     btn.textContent = 'Finish!';
