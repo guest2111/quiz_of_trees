@@ -215,7 +215,7 @@ function evaluate(){
     let minutes = (secTot-seconds)/60;
     let points = 0;
     for (let i=0; i<hist.length; i++){
-        points += hist.points;
+        points += hist[i].points;
     };
     console.log('results');
     console.log(points);
@@ -225,7 +225,7 @@ function evaluate(){
         `
         <h1> Results </h1>
         <p> You have needed <div class='resNum';>${minutes}</div> minutes and <div class='resNum';>${seconds}</div> seconds.</p>
-        <p> You have received <div class='resNum';>${points}</div> out of <div class='resNum';>${hist.nr_now}</div> maximal points.</p>
+        <p> You have received <div class='resNum';>${points}</div> out of <div class='resNum';>${hist.length}</div> maximal points.</p>
         `;
     insertAsFirstChild(sec,div);
     for (let c of sec.children){
