@@ -46,6 +46,12 @@ console.log('test ende');
  * @param {*} location 
  * @returns struct : {'Specie','Criteria','randImg'}
  */
+
+window.onbeforeunload = function() {
+    // window.alert("If you reload your game progress is lost and you start another game with same settings.");
+    return '';
+}
+
 function getPossibleQuest(difficulty,location,previousImages){
     let q = {};
     q.randImg = '';
@@ -88,7 +94,7 @@ function chooseOffers(specie){
 function pQuestionText(criteria){
     let q = document.createElement('p');
     q.setAttribute('class','questText');
-    switch (quest.Criteria){
+    switch (criteria){
         case 'bark':
             q.textContent = 'Judging be the bark which tree could it be?'; break;
         case 'leaf':
@@ -303,8 +309,8 @@ function nextQuestion(){
 }
 
 function anotherPicture(){
-    console.log('requested another picture');
-    console.log(hist);
+    // console.log('requested another picture');
+    // console.log(hist);
     let quests = document.getElementsByClassName('querryPicture');
     let last = quests[quests.length-1];
     let ps = last.getElementsByTagName('p');
@@ -323,6 +329,12 @@ function anotherPicture(){
     let img = document.createElement('img');
     img.setAttribute('src',newPic);
     last.insertBefore(img,ol);
+    let crit = hist[hist.length-1].criteria[hist[hist.length-1].criteria.length - 1];
+    let pnew = pQuestionText(crit);
+    console.log('crit: ',crit);
+    console.log(pnew.outerHTML);
+    console.log(pnew.innerHTML);
+    last.insertBefore(pnew,img);
 }
 
 function findAnotherPicture(){
