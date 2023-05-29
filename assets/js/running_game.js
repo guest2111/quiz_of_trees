@@ -176,7 +176,13 @@ function addQuestion(hist){
         // pass;
     }
     nr_now += 1;
-    hist.push(hist_template);
+    console.log('before');
+    console.log(hist.length);
+    console.log(hist);
+    hist.push( hist_template() );
+    console.log('after');
+    console.log(hist.length);
+    console.log(hist);
     let indexHist = hist.length - 1;
     // get a random specie and criteria (deselection rules later)
     console.log('hist of hist   : ',hist);
@@ -231,6 +237,7 @@ function checkAnswer(){
     console.log('Success');
     console.log(this.textContent);
     let indexHist = hist.length - 1;
+    console.log(indexHist);
     // hist[indexHist].chosenItems.push(this);
     hist[indexHist].chosenAnswers.push(this.textContent);
     console.log('confirm: '+hist[indexHist].chosenAnswers[hist[indexHist].chosenAnswers.length-1]);
@@ -253,6 +260,7 @@ function checkAnswer(){
     console.log(hist[indexHist].chosenAnswers);
     console.log(`needed answers: ${hist[indexHist].chosenAnswers.length}`);
     console.log('number of possible answers: '+hist[indexHist].nrAnswers);
+    console.log('points at actual question: '+ hist[indexHist].points);
     console.log('clicked');
     console.log(hist[indexHist].points);
 }
@@ -266,14 +274,17 @@ function nextQuestion(){
 }
 
 let hist = [];
-let hist_template = {
-    questionIndex: null,
-    images: [],
-    points: 1,
-    nrAnswers: 0,
-    correctAnswer: '',
-    chosenAnswers: [],
-};
+
+function hist_template(){
+    return {
+        questionIndex: null,
+        images: [],
+        points: 1,
+        nrAnswers: 0,
+        correctAnswer: '',
+        chosenAnswers: [],
+    };
+}
 addQuestion(hist);
 console.log(hist);
 console.log('game over');
