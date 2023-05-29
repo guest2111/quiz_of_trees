@@ -27,10 +27,11 @@ div {
 }
 
 .qst-group {
-    margin: 1em;
+    margin: 0.5em;
+    padding: 10px;
 }
 
-.btn-start:hover {
+.btn-cmd:hover {
     background-color: orange;
     color: blue;
 }
@@ -68,4 +69,10 @@ it {
 
 it:hover {
     background-color: yellow;
+}
+
+#commands {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }

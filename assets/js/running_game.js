@@ -273,8 +273,17 @@ function nextQuestion(){
     addQuestion(hist);
 }
 
-let hist = [];
+function addFinishButton(){
+    let cmdArea = document.getElementById('commands');
+    let div = cmdArea.children[0];
+    let btn = document.createElement('button');
+    btn.setAttribute("class",'btn-group btn-cmd');
+    btn.addEventListener('click',evaluate);
+    btn.textContent = 'Finish!';
+    div.appendChild(btn);
+}
 
+let hist = [];
 function hist_template(){
     return {
         questionIndex: null,
@@ -285,6 +294,7 @@ function hist_template(){
         chosenAnswers: [],
     };
 }
+addFinishButton();
 addQuestion(hist);
 console.log(hist);
 console.log('game over');
