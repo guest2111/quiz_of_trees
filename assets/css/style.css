@@ -80,3 +80,14 @@ it:hover {
     display: flex;
     flex-direction: row;
 }
+.querryPicture {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+[hidden]{
+    display:none;
+}

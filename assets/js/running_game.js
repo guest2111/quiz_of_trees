@@ -28,7 +28,17 @@ console.log(duration_quest);
 let duration_time = localStorage.getItem('duration_time');
 console.log(duration_time);
 
+// console.log('test push')
+// let test = [];
+// console.log(test);
+// test.push('3');
+// console.log(test);
 
+// let test2 = {'a':[]};
+// test2.a.push('b');
+// console.log(test2);
+
+console.log('test ende');
 /** try to find specie-criteria-image combination which exists 
  *      and which has not been asked before
  * 
@@ -195,7 +205,7 @@ function addQuestion(hist){
     quest = getPossibleQuest('easy','any',imgHist);
     hist[indexHist].images.push(quest.randImg);
     hist[indexHist].specie = quest.Specie;
-    hist[indexHist].criteria.push = quest.Criteria;
+    hist[indexHist].criteria.push(quest.Criteria);
 
     correctAnswer = chooseCorrectAnswerText(quest.Specie);
     offers        = chooseOffers(quest.Specie);
@@ -240,6 +250,14 @@ function evaluate(){
         `;
     insertAsFirstChild(sec,div);
     for (let c of sec.children){
+        c.hidden = false;
+    }
+    let ps = document.getElementsByClassName('questText');
+    let imgs = document.getElementsByTagName('img');
+    for (let c of ps){
+        c.hidden = false;
+    }
+    for (let c of imgs){
         c.hidden = false;
     }
 }
@@ -298,16 +316,74 @@ function anotherPicture(){
         img.hidden = true;
     }
     // get another picture
-    let newPic = '/assets/images/nice_unspecific/IMG_20230514_140548.jpg';
+    let newPic = findAnotherPicture();
+    // let newPic = '/assets/images/nice_unspecific/IMG_20230514_140548.jpg';
     // insert
     let ol = last.getElementsByTagName('ol')[0];
     let img = document.createElement('img');
     img.setAttribute('src',newPic);
-    console.log(last);
-    console.log(last.innerHTML);
-    console.log(img);
-    console.log(ol);
     last.insertBefore(img,ol);
+}
+
+function findAnotherPicture(){
+    let act = hist[hist.length-1];
+    let crits = characteristic;
+    let critAv = [];
+    for (a of act.criteria){ critAv = removeElement(crits.slice(),a)};
+    let crit;
+    let imgPath = '';
+    let count = 0;
+    // console.log(act);
+    // console.log(`search for ${act.specie.german[0]}`);
+    // console.log(act.images);
+    // console.log(imgPath === '');
+    console.log(crits)
+    console.log(critAv);
+    while (imgPath === ''){
+    // for(let count = 0; count < 3; count++){
+        console.log("A");
+        for(let countImg=0; countImg < 50; countImg++){
+            // console.log("B");
+            crit = selectRandomElement(critAv);
+            // console.log('special folder name: ',makeSpecieFoldername(act.specie.latin[0]),crit);
+            // console.log('former pictures: ',act.images);
+            // console.log('available pcitures:');
+            // console.log(getAvailablePictures( makeSpecieFoldername(act.specie.latin[0]),crit ));
+            imgPath = selectRandomElement( getAvailablePictures( makeSpecieFoldername(act.specie.latin[0]),crit ));
+            // console.log(imgPath);
+            if (imgPath != ''){break};
+        };
+        // console.log('test: '+imgPath);
+        // console.log('act.images: ',act.images);
+        // console.log('index: ',act.images.indexOf(imgPath));
+        // console.log('imgPath: ',imgPath);
+        if (act.images.indexOf(imgPath) > -1){
+            imgPath = '';};
+        count++;
+        // if (imgPath.length > 0){break};
+        if(count > 100){console.log('blalla',count);break;};
+    }
+    // if not found try with any criteria, even same
+    while (imgPath === ''){
+        crit = selectRandomElement(crits);
+        imgPath = selectRandomElement( getAvailablePictures( makeSpecieFoldername(act.specie.latin[0]),crit ));
+        if (act.images.indexOf(imgPath) > -1){imgPath = ''};
+        count++;
+        if(count > 500){console.log(count);break;};
+    }
+    if (imgPath != ''){
+        // console.log(typeof(act));
+        // console.log(typeof(act.criteria));
+        // console.log(act.criteria.length);
+        // console.log(act.criteria);
+        // console.log('act',act);
+        act.criteria.push(crit);
+        act.images.push(imgPath);
+    } else { window.alert(`No other picture found for the given specie. Please choose ${act.correctAnswer}`)};
+    // console.log(imgPath != '');
+    // console.log('found image: ' + imgPath);
+    // console.log(act);
+    return imgPath;
 }
 
 // wrapper for evaluate to remove EventListener from button before evaluating
@@ -343,7 +419,7 @@ function hist_template(){
     return {
         questionIndex: null,
         images: [],
-        specie: '',
+        specie: null,
         criteria: [],
         points: 1,
         nrAnswers: 0,
