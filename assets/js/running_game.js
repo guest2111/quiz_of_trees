@@ -118,6 +118,7 @@ function createQuestionHTMLStructure(quest,correctAnswer,possibleAnswers){
     // build question html structure
     let master = document.createElement('div');
     let div  = document.createElement('span');
+    div.setAttribute('class','imageWrapper');
     master.setAttribute('class','querryPicture');
     // question text
     let q = pQuestionText(quest.Criteria);
@@ -268,6 +269,11 @@ function evaluate(){
     for (let c of imgs){
         c.hidden = false;
     }
+    // prevent image stacking:
+    let quests = document.getElementsByClassName('querryPicture');
+    for( let q of quests){
+        q.style.maxHeight = 'none';
+    }
 }
 
 function checkAnswer(){
@@ -313,13 +319,17 @@ function nextQuestion(){
 function anotherPicture(){
     // console.log('requested another picture');
     // console.log(hist);
-    let quests = document.getElementsByClassName('querryPicture');
+    // let quests = document.getElementsByClassName('querryPicture');
+    let quests = document.getElementsByClassName('imageWrapper');
     let last = quests[quests.length-1];
     let ps = last.getElementsByTagName('p');
+    console.log('control');
+    console.log(ps);
     for(let p of ps){
         p.hidden = true;
     }
     let pics = last.getElementsByTagName('img');
+    console.log(pics);
     for(let img of pics){
         img.hidden = true;
     }
@@ -327,10 +337,12 @@ function anotherPicture(){
     let newPic = findAnotherPicture();
     // let newPic = '/assets/images/nice_unspecific/IMG_20230514_140548.jpg';
     // insert
-    let ol = last.getElementsByTagName('ol')[0];
+    // let ol = last.getElementsByTagName('ol')[0];
     let img = document.createElement('img');
     img.setAttribute('src',newPic);
-    last.insertBefore(img,ol);
+    // last.insertBefore(img,ol);
+    last.appendChild(img);
+    
     let crit = hist[hist.length-1].criteria[hist[hist.length-1].criteria.length - 1];
     let pnew = pQuestionText(crit);
     console.log('crit: ',crit);

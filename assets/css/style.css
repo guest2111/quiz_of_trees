@@ -149,9 +149,6 @@ it:hover {
     margin: 5px 5vw;
 }
 
-[hidden]{
-    display:none;
-}
 
 @media screen and (orientation: portrait) {
     .querryPicture {
@@ -177,4 +174,8 @@ it:hover {
 
 @media screen and (orientation: landscape) {
 /* done with settings without media querry */
+}
+
+[hidden]{
+    display:none !important;
 }
