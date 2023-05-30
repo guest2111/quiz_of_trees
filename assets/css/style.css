@@ -37,7 +37,7 @@ div {
 }
 
 #quizSection {
-    padding: 10px;
+    padding: 0px;
     width: 90vw;
     text-align: center;
 }
@@ -53,6 +53,7 @@ ol {
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
+    padding-inline-start: 0;
 }
 it {    
     list-style-type: decimal;
@@ -71,6 +72,9 @@ it:hover {
     background-color: yellow;
 }
 
+.questText {
+    margin: 0.5em 0 0.2em 0
+}
 #commands {
     display: flex;
     align-items: center;
