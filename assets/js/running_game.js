@@ -117,17 +117,19 @@ function pQuestionText(criteria){
 function createQuestionHTMLStructure(quest,correctAnswer,possibleAnswers){
     // build question html structure
     let master = document.createElement('div');
+    let div  = document.createElement('span');
     master.setAttribute('class','querryPicture');
     // question text
     let q = pQuestionText(quest.Criteria);
-    master.appendChild(q);
+    div.appendChild(q);
+    master.appendChild(div);
     
     let img = document.createElement('img');
     img.setAttribute('alt','quiz image, which tree sort is it?');
     
     console.log('trying to set img src to: '+quest.randImg);
     img.setAttribute('src',quest.randImg);
-    master.appendChild(img);
+    div.appendChild(img);
     
     // mix possibleAnswers and correct solution
     possibleAnswers.push(correctAnswer);
