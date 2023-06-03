@@ -96,7 +96,7 @@ function pQuestionText(criteria){
     q.setAttribute('class','questText');
     switch (criteria){
         case 'bark':
-            q.textContent = 'Judging be the bark which tree could it be?'; break;
+            q.textContent = 'Judging by the bark which tree could it be?'; break;
         case 'leaf':
             q.textContent = 'Which tree has this leafes?'; break;
         case 'flower':

@@ -1,5 +1,6 @@
 html * {
     font-size: 2vh;
+    background-color: #e9f1f9;
 }
 
 body {
@@ -8,6 +9,13 @@ body {
     align-content: center;
     align-items: center;
 }
+
+/* .center {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+} */
+
 .result {
     margin: 5px 5px 5px;
 }
@@ -139,6 +147,9 @@ it:hover {
     align-items: center;
     flex-direction: column;
     height: 7.5vh;
+    position: fixed;
+    bottom: 0;
+    right: 10vw;
 }
 #commands>div {
     display: flex;
@@ -149,7 +160,13 @@ it:hover {
     margin: 5px 5vw;
 }
 
+@media screen and (min-width: 1200px){
 
+    .btn-group {
+        display: flex;
+        border: 2px solid green;
+    }
+}
 @media screen and (orientation: portrait) {
     html * {
         font-size: 3vw;
