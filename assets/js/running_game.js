@@ -286,6 +286,9 @@ function evaluate(){
     for( let q of quests){
         q.style.maxHeight = 'none';
     }
+    hideCmdButtons();
+    addBackToSettings();
+    addStartAnew();
 }
 
 function checkAnswer(){
@@ -432,7 +435,7 @@ function evaluateByButton(){
 }
 function addFinishButton(){
     let cmdArea = document.getElementById('commands');
-    let div = cmdArea.children[0];
+    let div = cmdArea.children[0];    
     let btn = document.createElement('button');
     btn.setAttribute("class",'btn-group btn-cmd');
     btn.setAttribute("id",'finish');
@@ -465,6 +468,47 @@ function hist_template(){
         chosenAnswers: [],
     };
 }
+
+function backToSettings(){
+    window.open("/index.html","_self");
+}
+
+function startAnew(){
+    location.reload();
+}
+
+function addStartAnew(){
+    let cmdArea = document.getElementById('commands');
+    let div = cmdArea.children[0];
+    let btn = document.createElement('button');
+    btn.setAttribute("class",'btn-group btn-cmd');
+    btn.setAttribute("id",'backToSettings');
+    btn.addEventListener('click',startAnew);
+    btn.textContent = 'Start again';
+    div.appendChild(btn);
+}
+
+function hideCmdButtons(){
+    let cmdArea = document.getElementById('commands');
+    let div = cmdArea.children[0];
+    // first hide other buttons
+    for(let but of div.children){
+        but.setAttribute("hidden","true");
+    }
+    console.log("done hiding")
+}
+
+function addBackToSettings(){
+    let cmdArea = document.getElementById('commands');
+    let div = cmdArea.children[0];
+    let btn = document.createElement('button');
+    btn.setAttribute("class",'btn-group btn-cmd');
+    btn.setAttribute("id",'backToSettings');
+    btn.addEventListener('click',backToSettings);
+    btn.textContent = 'Back to Settings';
+    div.appendChild(btn);
+}
+
 addFinishButton();
 addRequestPictureButton();
 addQuestion(hist);
