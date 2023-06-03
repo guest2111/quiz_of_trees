@@ -230,12 +230,24 @@ function addQuestion(hist){
     area.appendChild(questionHTML);
 }
 
+function removeEventRequestPicture(){
+    let but = document.getElementById('requestPic');
+    but.removeEventListener('click',anotherPicture);
+}
+function removeEventFinish(){
+    let but = document.getElementById('finish');
+    but.removeEventListener('click',evaluate);
+}
+
 function evaluate(){
     // removing click events from items
     let its = document.getElementsByTagName('it');
     for (let it of its){
         it.removeEventListener('click',checkAnswer);
     }
+    // remove command button event
+    removeEventRequestPicture();
+    removeEventFinish();
     console.log('evalutae finally');
     // adding topic
     let sec = document.getElementById('quizSection');
