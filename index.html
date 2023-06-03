@@ -61,16 +61,16 @@
             <div class="qst-group duration">
             <label> Duration </label>
             <div class="btn-group">
-                <input type="radio" id="open" name="duration" value="open" onclick="selecting_open()" checked required>
+                <input type="radio" id="open" name="duration" value="open" onclick="selecting_open()" required>
                 <label for="open"> Open (with time malus) </label>
-                <input type="radio" id="number" name="duration" value="fixed_questions" onclick="selecting_maxNumber()" required>
+                <input type="radio" id="number" name="duration" value="fixed_questions" onclick="selecting_maxNumber()" checked required>
                 <label for="number"> Number of questions: </label>
                 <input type="number" id="number_questions" name="duration_quest" disabled="false"
-                    min="2" max="50">
+                    min="2" max="50" value="10">
                 <input type="radio" id="duration" name="duration" value="fixed_duration" onclick="selecting_maxTime()" required>
                 <label for="duration"> Duration in minutes: </label>
                 <input type="number" id="duration_minutes" name="duration_time" disabled="false"
-                    min="1" max="9" value="2">
+                    min="1" max="9">
             </div></div>
 
             <div class="qst-group">
