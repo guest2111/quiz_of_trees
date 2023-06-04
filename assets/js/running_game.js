@@ -19,7 +19,7 @@ let time_start = performance.now();
 // set up a warning on reload:
 window.onbeforeunload = function() {
     return "If you reload or leave, your game progress is lost and you start another game with same settings.";
-}
+};
 
 /** try to find specie-criteria-image combination which exists 
  *      and which has not been asked before
@@ -37,10 +37,10 @@ function getPossibleQuest(previousImages){
         q.Specie = selectRandomElement(species);
         q.Criteria = selectRandomElement(characteristic);
         q.randImg = selectRandomElement( getAvailablePictures( makeSpecieFoldername(q.Specie.latin[0]),q.Criteria ));
-        if (previousImages.indexOf(q.randImg) > -1){q.randImg = ''};
+        if (previousImages.indexOf(q.randImg) > -1){q.randImg = ''}
         count++;
-        if(count>99){break}
-        if(q.randImg.length > 0){break} 
+        if(count>99){break;}
+        if(q.randImg.length > 0){break;} 
     }
     console.log(`I needed ${count} attempts to find a specie and criteria where at least one image is available`);
     console.log(`chosen image is ${q.randImg}`);
@@ -55,7 +55,7 @@ function getPossibleQuest(previousImages){
 function chooseCorrectAnswerText(specie){
     let correctAnswer = selectRandomElement( specie[language] );
     console.log(`correct answer is: ${correctAnswer}`);
-    return correctAnswer
+    return correctAnswer;
 }
 
 /** create alternative / wrong answers
@@ -71,7 +71,7 @@ function chooseOffers(specie){
         // let ad = possible.pop(i);
         offers.push(selectRandomElement( possible.pop(i)[language] ));
     }
-    return offers
+    return offers;
 }
 
 /** creating paragraph html element with a question fitting to criteria
@@ -99,7 +99,7 @@ function pQuestionText(criteria){
             q.textContent = 'Which tree has such wood?'; break;
         default:
             q.textContent = `Which tree is it according to the criteria of ${querryCriteria}?`;
-    };
+    }
     return q;
 }
 function createQuestionHTMLStructure(quest,correctAnswer,possibleAnswers){
@@ -144,7 +144,7 @@ function retrieveAttributeContentsOfArrayObjects(arr,attr){
     for (let a of arr){
         // ans.push(a[attr]);
         ans = ans.concat(a[attr]);
-    };
+    }
     return ans;
 }
 
@@ -240,7 +240,7 @@ function evaluate(){
     let points = 0;
     for (let i=0; i<hist.length; i++){
         points += hist[i].points;
-    };
+    }
     console.log('results');
     console.log(points);
     console.log(hist);
@@ -350,7 +350,7 @@ function findAnotherPicture(){
     imgHist = imgHist.concat(act.images);
     let crits = characteristic;
     let critAv = [];
-    for (a of act.criteria){ critAv = removeElement(crits.slice(),a)};
+    for (a of act.criteria){ critAv = removeElement(crits.slice(),a)}
     let crit;
     let imgPath = '';
     let count = 0;
@@ -358,24 +358,24 @@ function findAnotherPicture(){
         for(let countImg=0; countImg < 50; countImg++){
             crit = selectRandomElement(critAv);
             imgPath = selectRandomElement( getAvailablePictures( makeSpecieFoldername(act.specie.latin[0]),crit ));
-            if (imgPath != ''){break};
-        };
+            if (imgPath != ''){break;}
+        }
         if (imgHist.indexOf(imgPath) > -1){
-            imgPath = '';};
+            imgPath = '';}
         count++;
-        if(count > 100){break;};
+        if(count > 100){break;}
     }
     while (imgPath === ''){
         crit = selectRandomElement(crits);
         imgPath = selectRandomElement( getAvailablePictures( makeSpecieFoldername(act.specie.latin[0]),crit ));
-        if (imgHist.indexOf(imgPath) > -1){imgPath = ''};
+        if (imgHist.indexOf(imgPath) > -1){imgPath = '';}
         count++;
-        if(count > 500){break;};
+        if(count > 500){break;}
     }
     if (imgPath != ''){
         act.criteria.push(crit);
         act.images.push(imgPath);
-    } else { window.alert(`No other picture found for the given specie. Please choose ${act.correctAnswer}`)};
+    } else { window.alert(`No other picture found for the given specie. Please choose ${act.correctAnswer}`);}
     return imgPath;
 }
 

@@ -42,7 +42,7 @@ function insertAsFirstChild(parentID,newNode){
  * @returns element
  */
 function selectRandomElement(elements){
-    if (elements.length == 0){return []}
+    if (elements.length == 0){return []};
     let nmax = elements.length;
     return elements[getRandomInt(nmax)];
 }
