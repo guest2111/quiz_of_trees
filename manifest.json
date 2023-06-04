@@ -1,7 +1,7 @@
 {
   "name": "Quiz of Trees",
   "short_name": "Quiz of Trees",
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#fff",
   "description": "Train your tree specie detection skills.",
