@@ -25,9 +25,7 @@ function selecting_maxTime(){
 function selecting_maxNumber(){
     console.log("selecting_maxNumber called");
     disable_maxTime();
-    console.log('1');
     enable_maxNumber();
-    console.log('2');
 }
 
 function selecting_open(){
@@ -37,8 +35,6 @@ function selecting_open(){
 
 function start_game(event){
     event.preventDefault();
-    console.log('start called');
-    console.log(settings);
     let form = document.getElementById('form_setting');
     localStorage.setItem("geoLoc",      form.elements['geoLoc'].value);
     localStorage.setItem("difficulty",  form.elements['difficulty'].value);
