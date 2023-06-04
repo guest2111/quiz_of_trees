@@ -256,6 +256,8 @@ function evaluate(){
     hideCmdButtons();
     addBackToSettings();
     addStartAnew();
+
+    window.onbeforeunload = '';
 }
 
 function checkAnswer(){
