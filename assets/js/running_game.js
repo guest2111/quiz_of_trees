@@ -109,9 +109,9 @@ function createQuestionHTMLStructure(quest,correctAnswer,possibleAnswers){
     possibleAnswers.push(correctAnswer);
     possibleAnswers = shuffle(possibleAnswers);
     // append possibleAnswers
-    let lst = document.createElement('ol');
+    let lst = document.createElement('ul');
     for (let o of possibleAnswers){
-        let it = document.createElement('it');
+        let it = document.createElement('li');
         it.textContent = o;
         it.addEventListener('click',checkAnswer);
         lst.appendChild(it);
