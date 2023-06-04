@@ -223,7 +223,7 @@ function removeEventFinish(){
  */
 function evaluate(){
     // removing click events from items
-    let its = document.getElementsByTagName('it');
+    let its = document.getElementsByTagName('li');
     for (let it of its){
         it.removeEventListener('click',checkAnswer);
     }
