@@ -18,8 +18,7 @@ let time_start = performance.now();
 
 
 window.onbeforeunload = function() {
-    // window.alert("If you reload your game progress is lost and you start another game with same settings.");
-    return '';
+    return "If you reload or leave, your game progress is lost and you start another game with same settings.";
 }
 
 /** try to find specie-criteria-image combination which exists 
@@ -256,6 +255,9 @@ function evaluate(){
     hideCmdButtons();
     addBackToSettings();
     addStartAnew();
+
+    // // giving space to new buttons (import for potrait orientation)
+    sec.children[sec.children.length-1].setAttribute('style','margin: 0 0 7.5vh 0; max-height: none;');
 
     window.onbeforeunload = '';
 }

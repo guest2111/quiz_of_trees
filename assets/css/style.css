@@ -57,6 +57,10 @@ label {
     text-align: center;
 }
 
+#quizSection > div {
+    margin: 0 0 2.5vh 0;
+}
+
 .questText {
     margin: 1vh 0;
     font-size: 3vh;
@@ -154,20 +158,9 @@ li:hover {
     .questText {
         font-size: 4vw;
     }
-    it {    
-        font-size: 3vw;
-    }
 
     .querryPicture {
         flex-direction: column;
-    }
-
-    ol {
-        flex-direction: row;
-        margin: 0;
-    }
-    it {
-        margin: 0.1vh 0.2vh;
     }
 
     .querryPicture img {
@@ -176,6 +169,16 @@ li:hover {
         max-width: 90vw;
         height: auto;
         width: 100%;
+    }
+
+    ul {
+        flex-direction: row;
+        margin: 0;
+    }
+
+    li {    
+        font-size: 3vw;
+        margin: 0.1vh 0.2vh;
     }
 }
 
