@@ -16,7 +16,7 @@ let time_needed = 999;
 let nr_now = 0;
 let time_start = performance.now();
 
-
+// set up a warning on reload:
 window.onbeforeunload = function() {
     return "If you reload or leave, your game progress is lost and you start another game with same settings.";
 }
@@ -47,12 +47,22 @@ function getPossibleQuest(previousImages){
     return q;
 }
 
+/** retrieve string for the correct answer given by object specie
+ * 
+ * @param {*} specie 
+ * @returns {string}
+ */
 function chooseCorrectAnswerText(specie){
     let correctAnswer = selectRandomElement( specie[language] );
     console.log(`correct answer is: ${correctAnswer}`);
     return correctAnswer
 }
 
+/** create alternative / wrong answers
+ * 
+ * @param {*} specie - will be excluded to not appear double 
+ * @returns [list]
+ */
 function chooseOffers(specie){
     let offers = [];
     let possible = removeElement(species.slice(),specie);
@@ -64,6 +74,11 @@ function chooseOffers(specie){
     return offers
 }
 
+/** creating paragraph html element with a question fitting to criteria
+ * 
+ * @param {string} criteria 
+ * @returns {HTML element}
+ */
 function pQuestionText(criteria){
     let q = document.createElement('p');
     q.setAttribute('class','questText');
@@ -200,6 +215,12 @@ function removeEventFinish(){
     but.removeEventListener('click',evaluate);
 }
 
+/** evaluate the answer 
+ * - remove ingame buttons
+ * - add result overview (with reached points and needed time)
+ * - unhide / show all questions, images and answers
+ * - add button for restart or going back to settings
+ */
 function evaluate(){
     // removing click events from items
     let its = document.getElementsByTagName('it');
@@ -262,6 +283,9 @@ function evaluate(){
     window.onbeforeunload = '';
 }
 
+/** check given answer and change color of button accordingly
+ * 
+ */
 function checkAnswer(){
     let indexHist = hist.length - 1;
     // hist[indexHist].chosenItems.push(this);
@@ -278,6 +302,9 @@ function checkAnswer(){
     } 
 }
 
+/** hide previous quest and add next one
+ * 
+ */
 function nextQuestion(){
     let quizSec = document.getElementById('quizSection');
     for (let c of quizSec.children){
@@ -286,6 +313,10 @@ function nextQuestion(){
     addQuestion(hist);
 }
 
+/** display another picture in quest
+ *     - first hide previous picture
+ *     - add question according to criteria 
+ */
 function anotherPicture(){
     let quests = document.getElementsByClassName('imageWrapper');
     let last = quests[quests.length-1];
@@ -308,6 +339,11 @@ function anotherPicture(){
     last.insertBefore(pnew,img);
 }
 
+/** find a new picture
+ * first search for picture of a unused criteria in the question and then if not found any left available pictures
+ * 
+ * @returns {string} - path to picture
+ */
 function findAnotherPicture(){
     let act = hist[hist.length-1];
     let crits = characteristic;
@@ -361,6 +397,10 @@ function evaluateByButton(){
     // console.log(corAns);
     evaluate();
 }
+
+
+/** add button "finish"
+ */
 function addFinishButton(){
     let cmdArea = document.getElementById('commands');
     let div = cmdArea.children[0];    
@@ -372,6 +412,8 @@ function addFinishButton(){
     div.appendChild(btn);
 }
 
+/** add button to request another picture
+ */
 function addRequestPictureButton(){
     let cmdArea = document.getElementById('commands');
     let div = cmdArea.children[0];
@@ -405,6 +447,8 @@ function startAnew(){
     location.reload();
 }
 
+/** add button "start anew"
+ */
 function addStartAnew(){
     let cmdArea = document.getElementById('commands');
     let div = cmdArea.children[0];
@@ -425,6 +469,8 @@ function hideCmdButtons(){
     }
 }
 
+/** add button "back to settings"
+ */
 function addBackToSettings(){
     let cmdArea = document.getElementById('commands');
     let div = cmdArea.children[0];
