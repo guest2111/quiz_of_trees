@@ -341,10 +341,24 @@ function findAnotherPicture(){
     return imgPath;
 }
 
-// wrapper for evaluate to remove EventListener from button before evaluating
+// wrapper for evaluate to remove EventListener from button before evaluating and don't give points for last question
 function evaluateByButton(){
     let btn = document.getElementById('finish');
     btn.removeEventListener('click',evaluate);
+    // adjusting last quests answers
+    let corAns = hist[hist.length-1].correctAnswer;
+    let sec = document.getElementById('quizSection');
+    let lis = sec.children[sec.children.length-1].children[1].children;
+    console.log(corAns);
+    for(let li of lis){
+        console.log(li);    
+        if (li.textContent != corAns){
+            li.style.backgroundColor = "#FF1100";
+        }
+    }
+    hist[hist.length-1].points = 0;
+    // let corAns = hist[hist.length-1].correctAnswer;
+    // console.log(corAns);
     evaluate();
 }
 function addFinishButton(){
@@ -353,7 +367,7 @@ function addFinishButton(){
     let btn = document.createElement('button');
     btn.setAttribute("class",'btn-group btn-cmd');
     btn.setAttribute("id",'finish');
-    btn.addEventListener('click',evaluate);
+    btn.addEventListener('click',evaluateByButton);
     btn.textContent = 'Finish!';
     div.appendChild(btn);
 }
