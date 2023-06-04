@@ -471,7 +471,7 @@ function hideCmdButtons(){
     }
 }
 
-/** add button "back to settings"
+/** add button "back to settings" 
  */
 function addBackToSettings(){
     let cmdArea = document.getElementById('commands');
