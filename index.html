@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.json" />
     <!-- Stylesheet -->
     <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="#">
     <title>Document</title>
-    <meta name="description" content="Settings to prepare the quiz of detecting the correct tree specie.">
-    <meta name="theme-color" content="#22d911"/>
 </head>
 <body>
     <h1> Welcome!</h1>
@@ -57,43 +54,13 @@
                 <label for="english"> English </label>
                 <input type="radio" id="german" name="language" value="german" required>
                 <label for="german"> German </label>
-                <input type="radio" id="latin" name="language" value="latin" required>
-                <label for="latin"> Latin </label>
+                <input type="radio" id="german" name="language" value="latin" required>
+                <label for="german"> Latin </label>
             </div></div>
             
             <div class="qst-group duration">
             <label> Duration </label>
             <div class="btn-group">
-                <div>
-                    <input type="radio" id="open" name="duration" value="open" onclick="selecting_open()" required>
-                    <label for="open">Open</label>
-                </div>
-                <div>
-                    <input type="radio" id="number" name="duration" value="fixed_questions" onclick="selecting_maxNumber()" checked required>
-                    <label for="number">Number of questions:</label>
-                    <input type="number" id="number_questions" name="duration_quest" disabled="false"
-                        min="2" max="50" value="10">
-                    <label for="number_questions" style="
-                    padding: 0; 
-                    width: 0;
-                    display: block;
-                    height: 0;
-                    opacity: 0;"> only for lighthouse </label>
-                </div>
-                <div>
-                    <input type="radio" id="duration" name="duration" value="fixed_duration" onclick="selecting_maxTime()" required>
-                    <label for="duration">Duration in minutes:</label>
-                    <input type="number" id="duration_minutes" name="duration_time" disabled="false"
-                        min="1" max="9">
-                    <label for="duration_minutes" style="
-                        padding: 0; 
-                        width: 0;
-                        display: block;
-                        height: 0;
-                        opacity: 0;"> only for lighthouse </label>
-                </div>
-            </div>            
-            <!-- <div class="btn-group">
                 <input type="radio" id="open" name="duration" value="open" onclick="selecting_open()" required>
                 <label for="open"> Open </label>
                 <input type="radio" id="number" name="duration" value="fixed_questions" onclick="selecting_maxNumber()" checked required>
@@ -104,8 +71,7 @@
                 <label for="duration"> Duration in minutes: </label>
                 <input type="number" id="duration_minutes" name="duration_time" disabled="false"
                     min="1" max="9">
-            </div> -->
-        </div>
+            </div></div>
 
             <div class="qst-group">
                 <button class="btn-group btn-cmd" >Start game!</button>
