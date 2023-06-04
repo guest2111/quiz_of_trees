@@ -442,7 +442,7 @@ function hist_template(){
 }
 
 function backToSettings(){
-    window.open("/index.html","_self");
+    window.open("../../index.html","_self");
 }
 
 function startAnew(){
