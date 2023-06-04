@@ -346,6 +346,8 @@ function anotherPicture(){
  */
 function findAnotherPicture(){
     let act = hist[hist.length-1];
+    let imgHist = retrieveAttributeContentsOfArrayObjects(hist,'images');
+    imgHist = imgHist.concat(act.images);
     let crits = characteristic;
     let critAv = [];
     for (a of act.criteria){ critAv = removeElement(crits.slice(),a)};
@@ -358,7 +360,7 @@ function findAnotherPicture(){
             imgPath = selectRandomElement( getAvailablePictures( makeSpecieFoldername(act.specie.latin[0]),crit ));
             if (imgPath != ''){break};
         };
-        if (act.images.indexOf(imgPath) > -1){
+        if (imgHist.indexOf(imgPath) > -1){
             imgPath = '';};
         count++;
         if(count > 100){break;};
@@ -366,7 +368,7 @@ function findAnotherPicture(){
     while (imgPath === ''){
         crit = selectRandomElement(crits);
         imgPath = selectRandomElement( getAvailablePictures( makeSpecieFoldername(act.specie.latin[0]),crit ));
-        if (act.images.indexOf(imgPath) > -1){imgPath = ''};
+        if (imgHist.indexOf(imgPath) > -1){imgPath = ''};
         count++;
         if(count > 500){break;};
     }
