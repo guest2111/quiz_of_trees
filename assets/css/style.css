@@ -165,7 +165,7 @@ li:hover {
 
     .querryPicture img {
         object-fit: contain;
-        max-height: 75vh;
+        max-height: 65vh;
         max-width: 90vw;
         height: auto;
         width: 100%;
