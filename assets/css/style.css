@@ -96,6 +96,9 @@ label {
     /* width: 100%; */
     /* max-width: 80vw; */
     display: inline-block;
+    transform-origin: 0px 0px;
+    transform: scale(1) translate(0px, 0px);
+    cursor: grab;
 }
 
 ul {

@@ -115,6 +115,7 @@ function createQuestionHTMLStructure(quest,correctAnswer,possibleAnswers){
     
     let img = document.createElement('img');
     img.setAttribute('alt','quiz image, which tree sort is it?');
+    makeImgZoomable(img);
     
     img.setAttribute('src',quest.randImg);
     div.appendChild(img);
