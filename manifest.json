@@ -7,7 +7,7 @@
   "description": "Train your tree specie detection skills.",
   "icons": [
     {
-      "src": "/assets/images/tree-of-life-symbol-yggdrasil-image-png-favpng-XzUZyXiq8jchu7WaQWytkfTss.jpg",
+      "src": "./assets/images/tree-of-life-symbol-yggdrasil-image-png-favpng-XzUZyXiq8jchu7WaQWytkfTss.jpg",
       "sizes": "196x196",
       "type": "image/png",
       "purpose": "any maskable"
