@@ -274,7 +274,6 @@ let images = [
     '../../assets/images/prunus_domestica/leaf/IMG_20230514_151803.jpg',
     '../../assets/images/alnus_glitinosa/leaf/IMG_20230514_151405.jpg',
     '../../assets/images/alnus_glitinosa/bark/IMG_20230514_151409.jpg',
-    '../../assets/images/alnus_glitinosa/whole/IMG_20230514_151418.jpg',
     '../../assets/images/alnus_glitinosa/whole/IMG_20230514_151420.jpg',
     '../../assets/images/carpinus_betulus/leaf/IMG_20230514_133725.jpg',
     '../../assets/images/carpinus_betulus/leaf/IMG_20230514_140519.jpg',
