@@ -265,6 +265,7 @@ function evaluate(){
     }
     for (let c of imgs){
         c.hidden = false;
+        resetImgZoom(c);
     }
 
     // prevent image stacking:
@@ -333,6 +334,7 @@ function anotherPicture(){
     let newPic = findAnotherPicture();
     let img = document.createElement('img');
     img.setAttribute('src',newPic);
+    makeImgZoomable(img);
     last.appendChild(img);
     
     let crit = hist[hist.length-1].criteria[hist[hist.length-1].criteria.length - 1];

@@ -93,6 +93,14 @@ function shuffle(a) {
     return a;
 }
 
+/** reset the zoom done by makeImgZoomable()
+ * 
+ * @param {HTML img object} img 
+ */
+function resetImgZoom(img){
+    img.style.transform = "translate(0px,0px) scale(1)";
+}
+
 // make image zoomable
 // https://dev.to/stackfindover/zoom-image-point-with-mouse-wheel-11n3
 function makeImgZoomable(img) {
