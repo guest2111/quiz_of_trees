@@ -146,6 +146,10 @@ li:hover {
     margin: 5px 5vw;
 }
 
+input[type="number"] {
+    width: 3em;
+  }
+
 @media screen and (min-width: 1200px) {
 
     .btn-group {
