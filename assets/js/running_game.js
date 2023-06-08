@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // https://www.devdungeon.com/content/run-javascript-after-dom-fully-loaded
     console.log('dom loaded');
 
-    const start = performance.now();
-
     let geoLoc = localStorage.getItem("geoLoc");
     let difficulty = localStorage.getItem("difficulty");
     let environment = localStorage.getItem("environment");
@@ -39,7 +37,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             q.Specie = selectRandomElement(species);
             q.Criteria = selectRandomElement(characteristic);
             q.randImg = selectRandomElement(getAvailablePictures(makeSpecieFoldername(q.Specie.latin[0]), q.Criteria));
-            if (previousImages.indexOf(q.randImg) > -1) { q.randImg = '' }
+            if (previousImages.indexOf(q.randImg) > -1) { q.randImg = '' };
             count++;
             if (count > 99) { break; }
             if (q.randImg.length > 0) { break; }
@@ -100,7 +98,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             case 'wood':
                 q.textContent = 'Which tree has such wood?'; break;
             default:
-                q.textContent = `Which tree is it according to the criteria of ${querryCriteria}?`;
+                q.textContent = `Which tree is it according to the criteria of ${criteria}?`;
         }
         return q;
     }
@@ -190,19 +188,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         // get a random specie and criteria 
         let imgHist = retrieveAttributeContentsOfArrayObjects(hist, 'images');
-        quest = getPossibleQuest(imgHist);
+        let quest = getPossibleQuest(imgHist);
         hist[indexHist].images.push(quest.randImg);
         hist[indexHist].specie = quest.Specie;
         hist[indexHist].criteria.push(quest.Criteria);
 
         // collect correct answer and choose offers
-        correctAnswer = chooseCorrectAnswerText(quest.Specie);
-        offers = chooseOffers(quest.Specie);
+        let correctAnswer = chooseCorrectAnswerText(quest.Specie);
+        let offers = chooseOffers(quest.Specie);
         hist[indexHist].correctAnswer = correctAnswer;
         hist[indexHist].nrAnswers = offers.length;
 
         // compose html structure
-        questionHTML = createQuestionHTMLStructure(quest, correctAnswer, offers);
+        let questionHTML = createQuestionHTMLStructure(quest, correctAnswer, offers);
 
         // append html structure to page
         let area = document.getElementById('quizSection');
@@ -356,7 +354,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         imgHist = imgHist.concat(act.images);
         let crits = characteristic;
         let critAv = [];
-        for (a of act.criteria) { critAv = removeElement(crits.slice(), a) }
+        for (let a of act.criteria) { critAv = removeElement(crits.slice(), a) }
         let crit;
         let imgPath = '';
         let count = 0;
@@ -396,7 +394,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let lis = sec.children[sec.children.length - 1].children[1].children;
         console.log(corAns);
         for (let li of lis) {
-            console.log(li);
             if (li.textContent != corAns) {
                 li.style.backgroundColor = "#FF1100";
             }

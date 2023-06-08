@@ -125,17 +125,17 @@ function makeImgZoomable(img) {
 
     function setTransform() {
         img.style.transform = "translate(" + pointX + "px, " + pointY + "px) scale(" + scale + ")";
-    }
+    };
 
     img.onmousedown = function (e) {
         e.preventDefault();
         start = { x: e.clientX - pointX, y: e.clientY - pointY };
         panning = true;
-    }
+    };
 
     img.onmouseup = function (e) {
         panning = false;
-    }
+    };
 
     img.onmousemove = function (e) {
         e.preventDefault();
@@ -145,7 +145,7 @@ function makeImgZoomable(img) {
         pointX = (e.clientX - start.x);
         pointY = (e.clientY - start.y);
         setTransform();
-    }
+    };
 
     img.onwheel = function (e) {
         e.preventDefault();
@@ -157,5 +157,5 @@ function makeImgZoomable(img) {
         pointY = e.clientY - ys * scale;
 
         setTransform();
-    }
+    };
 }
