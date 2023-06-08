@@ -37,6 +37,8 @@ function insertAsFirstChild(parentID, newNode) {
 }
 
 /** return random element of list
+ * usage: specie = selectRandomElement(species)
+ *        chriteria = selectRandomElement(characteristics)
  * 
  * @param {list} species 
  * @returns element
@@ -46,8 +48,6 @@ function selectRandomElement(elements) {
     let nmax = elements.length;
     return elements[getRandomInt(nmax)];
 }
-// -> selectRandomElement(species)
-//    selectRandomElement(characteristic)
 
 /** requesting available images for given specie and criteria
  * example: getAvailablePictures('quercus','bark')
@@ -97,12 +97,12 @@ function shuffle(a) {
  * 
  * @param {*} img 
  */
-function removeZoomability(img){
+function removeZoomability(img) {
     resetImgZoom(img);
     // img.removeEventListener
     img.onmousedown = '';
-    img.onmouseup   = '';
-    img.onwheel     = '';
+    img.onmouseup = '';
+    img.onwheel = '';
     img.onmousemove = '';
 }
 
@@ -110,7 +110,7 @@ function removeZoomability(img){
  * 
  * @param {HTML_img_object} img 
  */
-function resetImgZoom(img){
+function resetImgZoom(img) {
     img.style.transform = "translate(0px,0px) scale(1)";
 }
 
@@ -159,15 +159,3 @@ function makeImgZoomable(img) {
         setTransform();
     }
 }
-
-// testing:
-/*
-console.log(makeSpecieFoldername(selectRandomElement(species).latin[0]),selectRandomElement(characteristic));
-console.log(makeSpecieFoldername(selectRandomElement(species).latin[0]),selectRandomElement(characteristic));
-console.log(makeSpecieFoldername(selectRandomElement(species).latin[0]),selectRandomElement(characteristic));
-console.log('pyrus','leaf')
-console.log(getAvailablePictures('pyrus','leaf'));
-console.log(getAvailablePictures(makeSpecieFoldername(selectRandomElement(species).latin[0]),selectRandomElement(characteristic)));
-console.log(getAvailablePictures(makeSpecieFoldername(selectRandomElement(species).latin[0]),selectRandomElement(characteristic)));
-console.log(getAvailablePictures(makeSpecieFoldername(selectRandomElement(species).latin[0]),selectRandomElement(characteristic)));
-*/

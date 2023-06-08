@@ -17,13 +17,14 @@ body {
 div {
     padding: 15px 0 0;
 }
-.result > h1 {
+
+.result>h1 {
     font-size: 2em;
 }
 
 .resNum {
-    font-family:    Arial, Helvetica, sans-serif;
-    font-weight:    bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 
 .btn-group {
@@ -57,7 +58,7 @@ label {
     text-align: center;
 }
 
-#quizSection > div {
+#quizSection>div {
     margin: 0 0 2.5vh 0;
 }
 
@@ -78,23 +79,21 @@ label {
     padding: 0;
 }
 
-.querryPicture > span {
+.querryPicture>span {
     display: inline-block;
     width: auto;
 }
-.querryPicture > span2 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
+
+.querryPicture>span2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
 }
 
 .querryPicture img {
     object-fit: contain;
     max-height: 82.5vh;
-    /* height: auto; */
-    /* width: 100%; */
-    /* max-width: 80vw; */
     display: inline-block;
     transform-origin: 0px 0px;
     transform: scale(1) translate(0px, 0px);
@@ -103,8 +102,6 @@ label {
 
 ul {
     display: flex;
-    /* align-content: center;
-    justify-content: center; */
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
@@ -112,7 +109,8 @@ ul {
     margin: 1.5em;
     list-style-type: none;
 }
-li {    
+
+li {
     margin-block-start: 1em;
     margin-block-end: 0.3rem;
     margin-inline-start: 0px;
@@ -138,6 +136,7 @@ li:hover {
     bottom: 0;
     right: 10vw;
 }
+
 #commands>div {
     display: flex;
     flex-direction: row;
@@ -147,17 +146,19 @@ li:hover {
     margin: 5px 5vw;
 }
 
-@media screen and (min-width: 1200px){
+@media screen and (min-width: 1200px) {
 
     .btn-group {
         display: flex;
         border: 2px solid green;
     }
 }
+
 @media screen and (orientation: portrait) {
     html * {
         font-size: 3vw;
     }
+
     .questText {
         font-size: 4vw;
     }
@@ -179,16 +180,13 @@ li:hover {
         margin: 0;
     }
 
-    li {    
+    li {
         font-size: 3vw;
         margin: 0.1vh 0.2vh;
     }
 }
 
-@media screen and (orientation: landscape) {
-/* done with settings without media querry */
-}
-
-[hidden]{
-    display:none !important;
+/* https://stackoverflow.com/questions/23772673/hidden-property-does-not-work-with-flex-box */
+[hidden] {
+    display: none !important;
 }

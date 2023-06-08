@@ -1,92 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="./manifest.json">
     <!-- Stylesheet -->
     <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="#">
     <title>Document</title>
+    <!-- manifest standard: https://bobbyhadz.com/blog/manifest-line-1-column-1-syntax-error -->
+    <link rel="manifest" href="./manifest.json">
     <meta name="description" content="Settings to prepare the quiz of detecting the correct tree specie.">
     <meta name="theme-color" content="#22d911">
+    <!-- og-types: https://www.freecodecamp.org/news/what-is-open-graph-and-how-can-i-use-it-for-my-website/ -->
     <meta name="og:title" content="Quiz of trees">
     <meta property="og:type" content="website">
-    <meta name="og:image" content="https://guest2111.github.io/quiz_of_trees/assets/images/tree-of-life-symbol-yggdrasil-image-png-favpng-XzUZyXiq8jchu7WaQWytkfTss.jpg">
+    <meta name="og:image"
+        content="https://guest2111.github.io/quiz_of_trees/assets/images/tree-of-life-symbol-yggdrasil-image-png-favpng-XzUZyXiq8jchu7WaQWytkfTss.jpg">
     <meta name="og:url" content="https://guest2111.github.io/quiz_of_trees/index.html">
     <meta property="og:description" content="Set up your game and start training your specie determination skills!">
 </head>
+
 <body>
     <h1> Welcome!</h1>
     <p id="greeting"> Nice to see, you are interested in trees and want to train your specie determination skill!</p>
     <h2> Set up your game</h2>
     <section class="settings">
         <form id="form_setting" method="GET" action="./assets/html/game.html" name="settings">
-        <!-- <form method="GET" action="" name="settings"> -->
+            <!-- <form method="GET" action="" name="settings"> -->
             <div class="qst-group geoLoc">
-            <label> Geografical location </label>
-            <div class="btn-group">
-                <input type="radio" id="middleEurope" name="geoLoc" value="middle_europe" checked required>
-                <label for="middleEurope"> Middle Europe </label>
-            </div></div>
+                <label> Geografical location </label>
+                <div class="btn-group">
+                    <input type="radio" id="middleEurope" name="geoLoc" value="middle_europe" checked required>
+                    <label for="middleEurope"> Middle Europe </label>
+                </div>
+            </div>
 
             <div class="qst-group difficulty">
-            <label> Difficulty </label>
-            <div class="btn-group">
-                <input type="radio" id="easy" name="difficulty" value="easy" checked required>
-                <label for="easy"> Easy </label>
-                <input type="radio" id="middle" name="difficulty" value="easy" required>
-                <label for="middle"> Middle </label>
-                <input type="radio" id="difficult" name="difficulty" value="difficult" required>
-                <label for="difficult"> Difficult </label>
-                <input type="radio" id="god" name="difficulty" value="godmode" required>
-                <label for="god"> God mode </label>
-            </div></div>
+                <label> Difficulty </label>
+                <div class="btn-group">
+                    <input type="radio" id="easy" name="difficulty" value="easy" checked required>
+                    <label for="easy"> Easy </label>
+                    <input type="radio" id="middle" name="difficulty" value="easy" required>
+                    <label for="middle"> Middle </label>
+                    <input type="radio" id="difficult" name="difficulty" value="difficult" required>
+                    <label for="difficult"> Difficult </label>
+                    <input type="radio" id="god" name="difficulty" value="godmode" required>
+                    <label for="god"> God mode </label>
+                </div>
+            </div>
 
             <div class="qst-group environment">
-            <label> Environment </label>
-            <div class="btn-group">
-                <input type="radio" id="nature" name="environment" value="nature" checked required>
-                <label for="nature"> Nature </label>
-                <input type="radio" id="settlement" name="environment" value="settlement" required>
-                <label for="settlement"> Settlement </label>
-                <input type="radio" id="any" name="environment" value="any" required>
-                <label for="any"> Both </label>
-            </div></div>
+                <label> Environment </label>
+                <div class="btn-group">
+                    <input type="radio" id="nature" name="environment" value="nature" checked required>
+                    <label for="nature"> Nature </label>
+                    <input type="radio" id="settlement" name="environment" value="settlement" required>
+                    <label for="settlement"> Settlement </label>
+                    <input type="radio" id="any" name="environment" value="any" required>
+                    <label for="any"> Both </label>
+                </div>
+            </div>
 
             <div class="qst-group language">
-            <label> Language </label>
-            <div class="btn-group">
-                <input type="radio" id="english" name="language" value="english" checked required>
-                <label for="english"> English </label>
-                <input type="radio" id="german" name="language" value="german" required>
-                <label for="german"> German </label>
-                <input type="radio" id="latin" name="language" value="latin" required>
-                <label for="latin"> Latin </label>
-            </div></div>
-            
-            <div class="qst-group duration">
-            <label> Duration </label>          
-            <div class="btn-group">
-                <input type="radio" id="open" name="duration" value="open" onclick="selecting_open()" required>
-                <label for="open"> Open </label>
-                <input type="radio" id="number" name="duration" value="fixed_questions" onclick="selecting_maxNumber()" checked required>
-                <label for="number"> Number of questions: </label>
-                <input type="number" id="number_questions" name="duration_quest" disabled
-                    min="2" max="50" value="10">
-                <input type="radio" id="duration" name="duration" value="fixed_duration" onclick="selecting_maxTime()" required>
-                <label for="duration"> Duration in minutes: </label>
-                <input type="number" id="duration_minutes" name="duration_time" disabled
-                    min="1" max="9">
+                <label> Language </label>
+                <div class="btn-group">
+                    <input type="radio" id="english" name="language" value="english" checked required>
+                    <label for="english"> English </label>
+                    <input type="radio" id="german" name="language" value="german" required>
+                    <label for="german"> German </label>
+                    <input type="radio" id="latin" name="language" value="latin" required>
+                    <label for="latin"> Latin </label>
+                </div>
             </div>
-        </div>
+
+            <div class="qst-group duration">
+                <label> Duration </label>
+                <div class="btn-group">
+                    <input type="radio" id="open" name="duration" value="open" onclick="selecting_open()" required>
+                    <label for="open"> Open </label>
+                    <input type="radio" id="number" name="duration" value="fixed_questions"
+                        onclick="selecting_maxNumber()" checked required>
+                    <label for="number"> Number of questions: </label>
+                    <input type="number" id="number_questions" name="duration_quest" disabled min="2" max="50"
+                        value="10">
+                    <input type="radio" id="duration" name="duration" value="fixed_duration"
+                        onclick="selecting_maxTime()" required>
+                    <label for="duration"> Duration in minutes: </label>
+                    <input type="number" id="duration_minutes" name="duration_time" disabled min="1" max="9">
+                </div>
+            </div>
 
             <div class="qst-group">
-                <button class="btn-group btn-cmd" >Start game!</button>
+                <button class="btn-group btn-cmd">Start game!</button>
             </div>
         </form>
     </section>
     <script src="./assets/js/setting_behaviour.js"></script>
 </body>
+
 </html>
