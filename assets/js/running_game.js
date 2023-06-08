@@ -265,7 +265,8 @@ function evaluate(){
     }
     for (let c of imgs){
         c.hidden = false;
-        resetImgZoom(c);
+        // reset zoom and remove zoomability
+        removeZoomability(c);
     }
 
     // prevent image stacking:

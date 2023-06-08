@@ -93,9 +93,22 @@ function shuffle(a) {
     return a;
 }
 
+/** remove zoom functions from events and call resetImgZoom()
+ * 
+ * @param {*} img 
+ */
+function removeZoomability(img){
+    resetImgZoom(img);
+    // img.removeEventListener
+    img.onmousedown = '';
+    img.onmouseup   = '';
+    img.onwheel     = '';
+    img.onmousemove = '';
+}
+
 /** reset the zoom done by makeImgZoomable()
  * 
- * @param {HTML img object} img 
+ * @param {HTML_img_object} img 
  */
 function resetImgZoom(img){
     img.style.transform = "translate(0px,0px) scale(1)";
@@ -112,7 +125,6 @@ function makeImgZoomable(img) {
 
     function setTransform() {
         img.style.transform = "translate(" + pointX + "px, " + pointY + "px) scale(" + scale + ")";
-        console.log("transform called")
     }
 
     img.onmousedown = function (e) {
@@ -146,7 +158,6 @@ function makeImgZoomable(img) {
 
         setTransform();
     }
-    console.log("transform initialised")
 }
 
 // testing:
