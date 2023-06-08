@@ -34,6 +34,7 @@ the idea of this project to train one's tree determination skill in the way of a
      * [Wave](#wave)
      * [CSS - Jigsaw](#css-jigsaw)
      * [Lighthouse](#lighthouse)
+     * [JSHint](#jshint)
    * [User tests](#user-tests)
    * [Bugs](#nugs)
    * [Open Bugs](#open-bugs)
@@ -304,19 +305,19 @@ In order to add images to the database one must stick to the overall structure.
 ## Validator tests 
 ### HTML WC3 
 
-- [WC3 report index.html / settings](/docu/settings_wc3.png)
+- [!WC3 report index.html / settings](/docu/settings_wc3.png)
 
 - lacking of heading in setting due to not perfect joice of the tag `section`
 
 - the tag `section` is more appropriate than `div` - although there is no heading the user understands what it is about
 
-- [WC3 report of game.html](/docu/game_wc3.png)
+- ![WC3 report of game.html](/docu/game_wc3.png)
 
 - same issue with 'missing' heading tags
 
 ### HTML Wave 
 
-- [WAVE report](/docu/settings_wave.png)
+- ![WAVE report](/docu/settings_wave.png)
 
 - failed because of same issues as in lighthous, please refer to [that chapter](#lighthouse)
 
@@ -333,9 +334,9 @@ In order to add images to the database one must stick to the overall structure.
 
 ### Lighthouse 
 
-- [report of index.html](/docu/settings_lighthouse.png)
+- ![report of index.html](/docu/settings_lighthouse.png)
 
-- [detailed report of index.html](/docu/settings_lighthouse_detail.png)
+- ![detailed report of index.html](/docu/settings_lighthouse_detail.png)
 
 - issues can not be resolved because the html semantic expects one label per input and one input per label
 
@@ -343,12 +344,26 @@ In order to add images to the database one must stick to the overall structure.
 
 - please tell me how to do it better
 
-- [report of game.html on slow internet connection](/docu/game_lighthouse_slow_connection.png)
+- ![report of game.html on slow internet connection](/docu/game_lighthouse_slow_connection.png)
 
-- [report of game.html on local server](/docu/game_lighthouse_localserver.png)
+- ![report of game.html on local server](/docu/game_lighthouse_localserver.png)
 
 
 [<font size = 4> `back to toc` </font>](#table-of-content)
+
+### JSHint
+
+```
+Metrics
+
+There are 49 functions in this file.
+
+Function with the largest signature take 3 arguments, while the median is 0.
+
+Largest function has 41 statements in it, while the median is 4.
+
+The most complex function has a cyclomatic complexity value of 11 while the median is 1.
+```
 
 ## User tests 
 
@@ -362,6 +377,8 @@ In order to add images to the database one must stick to the overall structure.
 
 - overall the speed of loading pictures and reaction of the page on github pages was decently fast
   - higher speed can be reached, if deployed on local server
+
+[<font size = 4> `back to toc` </font>](#table-of-content)
 
 ## Bugs 
 
