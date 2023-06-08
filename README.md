@@ -4,6 +4,8 @@
 Hello,
 the idea of this project to train one's tree determination skill in the way of a quiz.
 
+# Table of Content
+
  * [User Experience](#user-experience)
    * [User Stories](#user-stories)
  
@@ -28,9 +30,9 @@ the idea of this project to train one's tree determination skill in the way of a
  
  * [Testing](#testing)
    * [Validator tests](#validator-tests)
-     * [WC3](#wc3)
+     * [CSS - WC3](#css-wc3)
      * [Wave](#wave)
-     * [Jigsaw](#jigsaw)
+     * [CSS - Jigsaw](#css-jigsaw)
      * [Lighthouse](#lighthouse)
    * [User tests](#user-tests)
    * [Bugs](#nugs)
@@ -42,12 +44,13 @@ the idea of this project to train one's tree determination skill in the way of a
    * [Content](#content)
    * [Media](#media)
 
----
+ * [Final Words](#final-words)
 
-# User Experience
-## Main purpose
+---
+# User Experience 
+## Main purpose 
 The main goal of this project is to support peoples **awareness** for nature. One way of doing so is knowledge and one key point for knowledge is to recognise different species.
-## User Stories
+## User Stories 
 The user seeks to train his tree specie determination skills and wants to do it on a fun way without having issues of how to use the software or webpage. It must be possible to not change any setting and start a short game. He wants to be able to recoqnise species while walking around in his neighbourhood or while visit another area. 
 
 It would be helpful to the user to use the app whenever conveniant. On desktop pc at home for big and nice pictures as well as on commuting on a mobile device.
@@ -58,22 +61,25 @@ The evaluation of the game play is set up rather benevolent. Even after answerin
 
 **But the user must have interest in trees!** Otherwise he will not have fun with the game.
 
+[<font size = 4> `back to toc` </font>](#table-of-content)
+
 ----
 
-# Design
+# Design 
 The design is build up to simplistic and without many visible features and decorations.
 Most size properties are related to the available space to fit on different devices.
 
 
-## Design of Settings page
+## Design of Settings page 
 Around a screen width of `300px` the settings page becomes diffucult to use on the number inputs for duration or number of questions. But so small screens are rare nowadays and mobile devices usually offer a separate input field. The design of input groups breaks on a bit more narrow screens. Starting the game is still possible. 
 ![screenshot min width](docu/screen_min_width.png)
 
 On wide screens with low height there appears a similar issue. The start button goes below the lower edge. But the page is scrollable and one can still reach the button.
 ![screenshot min height](docu/screen_min_height.png)
 
+[<font size = 4> `back to toc` </font>](#table-of-content)
 
-## Design of Game page
+## Design of Game page 
 The game page is build to have visually separate inputs. The positioning and the border of the answer options and the command options are different as well as the hover event on deskopt devices. That should make it intuitive for the user that the usage of both is different.
 
 ![Giving an answer](docu/game_horizontal_answer.png) ![Requesting another picture](docu/game_horizontal_next.png)
@@ -95,67 +101,122 @@ For most pictures the page border should not be touched by any visual element an
 
 ![wide picture landscape](docu/game_wide_pic_landscape.png)
 
+[<font size = 4> `back to toc` </font>](#table-of-content)
 
 ----
 
-# Features
+# Features 
 
-## Settings
+## Settings 
+[<font size = 4> `toc` </font>](#table-of-content)
 
 Settings influence game play: which pictures and questions are shown
 
-### Languages
-- it is possible to change the language of the species in the answers to: English, German, Latin
+[<font size = 4> `back to toc` </font>](#table-of-content)
+
+### Languages - it is possible to change the language of the species in the answers to: English, German, Latin
 - page translation works only for one language at a time -> if you want to try, keep the answers to English
 
-### Duration
+### Duration 
 You can set up how long the end lasts:
 - Open / No given end 
   - only possibility is to hit the end button
   - points for last question can not be obtained hence it is a malus to the users score
 
-### Geografical location
+### Geografical location 
 - for now there are pictures taken only in Germany
 - no other regions possible
 
-### Difficulty
+### Difficulty 
 - not implemented yet
 
-### Envirionment
+### Envirionment 
 - not implemented yet
 
-## Game Play
+[<font size = 4> `back to toc` </font>](#table-of-content)
 
-## Accessibility
+## Game Play 
+
+### While playing
+
+- hoover over buttons gives a color to give a response and interaction sensation to the user
+
+- marking answers red if wrong
+
+- marking answers green is not seen because **time is running**
+
+- after giving correct answer a new question is imediately composed and previous one is hidden
+
+- this replacing technique is supposed to enable faster game play without scrolling around
+
+- it will never show the same picture
+
+- if needed you can ask for another picture
+
+- it is much more likely to first give another criteria on another picture rather than giving another bark picture after not recoqnising the first bark picture
+
+- zooming in or rather expanding the picture is possible on deskop browsers
+
+- zooming the whole website is possible on mobile devices
+
+- if no end criteria chosen or one wants to stop playing, hit the *Finish!* button
+
+### Evaluation
+
+- a new area is added where needed time and reached points are listed
+
+- all previous questions, answers and images are show again
+
+- correctly given answer are now seen for the first time
+
+- pictures are not zoomable anymore on desktop devices (right click and open image in new tab is still possible)
+
+- gameplay command buttons are disabled and hidden
+
+- new command buttons are added:
+
+  - starting new game (with same settings)
+
+  - going back to settings and change the settings
+
+## Accessibility 
 
 Since it is only about a pictures it is impossible to provide helpful informtion to blind people. People might use screen readers connected to the mouse.
 For smartphones  it is not possible to have a mouse hoover event which lets read the options.
 Maybe for this case it would be usefule to make a `<ol>` for the answer buttons for better access.
 
-## Future Implementations
+## Future Implementations 
+[<font size = 4> `toc` </font>](#table-of-content)
 
-### Geografical location
+### Geografical location 
+[<font size = 4> `toc` </font>](#table-of-content)
 - requires a much bigger database in particular at least same amount of another region
 
-### Difficulty
+### Difficulty 
+[<font size = 4> `toc` </font>](#table-of-content)
 - intended to not show difficult species or pictures if easy mode selected
 - list preferable some similar answers if difficult
 - don't allow requesting another picture if God Mode
 - first choice must be correct to optain answer if on a difficult mode
 - most of this **require more pictures** in the database
 
-### Envirionment
+### Envirionment 
+[<font size = 4> `toc` </font>](#table-of-content)
 - option 'Nature': selecting to show pictures, which are normally growing in the area
 - option 'Settlement': showing plants which are usually planted in parks, town streets and gardens
 - option 'Both': regardless of inside or outside of settlement
 - most of this **require more pictures** in the database
 
-### Hoover for mobile devices
+### Hoover for mobile devices 
+[<font size = 4> `toc` </font>](#table-of-content)
 - [Giving a hoover alternative for mobile devices](https://www.prowebdesign.ro/how-to-deal-with-hover-on-touch-screen-devices/)
+
+[<font size = 4> `back to toc` </font>](#table-of-content)
 
 ----
 
-# Technologies Used
+# Technologies Used 
+[<font size = 4> `toc` </font>](#table-of-content)
 
 - HTML
 
@@ -167,8 +228,8 @@ Maybe for this case it would be usefule to make a `<ol>` for the answer buttons 
 
 ----
 
-# Deployment & Local Development
-## Installation by user
+# Deployment & Local Development 
+## Installation by user 
 
 - A manifest file is added in order make it possible to install the app over the browser [menu](/docu/install_on_desktop.png)
 
@@ -177,13 +238,13 @@ Maybe for this case it would be usefule to make a `<ol>` for the answer buttons 
 ![WPA on phone](/docu/phone_app.jpg)
 
 
-## Deployment
+## Deployment 
 
 - the project is available on GitHub [link to github projes](https://github.com/guest2111/quiz_of_trees)
 
 - a running example is on GitHub-Pages: [link to github pages](https://guest2111.github.io/quiz_of_trees/index.html)
 
-## Local Development
+## Local Development 
 
 - for development or fast response one can download the project and run on the own desktop
 
@@ -192,7 +253,7 @@ Maybe for this case it would be usefule to make a `<ol>` for the answer buttons 
   - via command line with git: `git clone https://github.com/guest2111/quiz_of_trees`
     - for more details read documentations, eg. [2.1 Git Basics - Getting a Git Repository](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository)
 
-## Sharing
+## Sharing 
 
 - og-types added to have nicer sharing features
   - [example 1](data:image/jpeg;base64,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)
@@ -203,7 +264,9 @@ Maybe for this case it would be usefule to make a `<ol>` for the answer buttons 
 
 - not tested on Facebook
 
-## How to add Images to Database
+[<font size = 4> `back to toc` </font>](#table-of-content)
+
+## How to add Images to Database 
 
 In order to add images to the database one must stick to the overall structure.
 
@@ -237,13 +300,57 @@ In order to add images to the database one must stick to the overall structure.
 
 ----
 
-# Testing
-## Validator tests
-### WC3
-### Wave
-### Jigsaw
-### Lighthouse
-## User tests
+# Testing 
+## Validator tests 
+### HTML WC3 
+
+- [WC3 report index.html / settings](/docu/settings_wc3.png)
+
+- lacking of heading in setting due to not perfect joice of the tag `section`
+
+- the tag `section` is more appropriate than `div` - although there is no heading the user understands what it is about
+
+- [WC3 report of game.html](/docu/game_wc3.png)
+
+- same issue with 'missing' heading tags
+
+### HTML Wave 
+
+- [WAVE report](/docu/settings_wave.png)
+
+- failed because of same issues as in lighthous, please refer to [that chapter](#lighthouse)
+
+- the other issues originate from the use of labels for the headings of different input groups
+
+- could have been avoided by using heading tags or using fieldsets
+
+  - but standard fieldset has a visualisation style which was not simplistic enough and thus not prefered
+
+### CSS Jigsaw 
+- tested and no issues:
+
+![Jigsaw report on style.css](/docu/index_html_jigsaw.png)
+
+### Lighthouse 
+
+- [report of index.html](/docu/settings_lighthouse.png)
+
+- [detailed report of index.html](/docu/settings_lighthouse_detail.png)
+
+- issues can not be resolved because the html semantic expects one label per input and one input per label
+
+- but here one input is used to activate the other one and only one label is necessary to the user 
+
+- please tell me how to do it better
+
+- [report of game.html on slow internet connection](/docu/game_lighthouse_slow_connection.png)
+
+- [report of game.html on local server](/docu/game_lighthouse_localserver.png)
+
+
+[<font size = 4> `back to toc` </font>](#table-of-content)
+
+## User tests 
 
 - one user said "nice pictures" and received 10 out of 12 points :-)
 
@@ -256,9 +363,9 @@ In order to add images to the database one must stick to the overall structure.
 - overall the speed of loading pictures and reaction of the page on github pages was decently fast
   - higher speed can be reached, if deployed on local server
 
-## Bugs
+## Bugs 
 
-### Open Bugs
+### Open Bugs 
 
 - by 90 degress rotated pictures on small phones
   - one user with small smartphone reported pictures to be 90 degress rotated
@@ -281,7 +388,8 @@ In order to add images to the database one must stick to the overall structure.
 - open link on home screen on smartphone shows error 404 "There isn]t a GitHub Pages site here"
   - tested on Android 12, Ecosia and Chrome
 
-### Fixed Bugs
+### Fixed Bugs 
+[<font size = 4> `toc` </font>](#table-of-content)
 
 - 'display: flex' prevented the hidden flag to be effective
   - [solution -> chapter 'Code Used'](/README.md?#code-used)
@@ -302,10 +410,12 @@ In order to add images to the database one must stick to the overall structure.
 - prevent repeating image of previous question while pushing the button 'Give me another picture!'
   - extend the image history to all questions while requesting another picture
 
+[<font size = 4> `back to toc` </font>](#table-of-content)
+
 ----
 
-# Credits
-## Code Used
+# Credits 
+## Code Used 
 
 References of mainly standard functions are listed simple and more advanced code is linked to the position of usage as well.
 
@@ -334,11 +444,20 @@ References of mainly standard functions are listed simple and more advanced code
 
 - [Why and how to add og-types - 1](https://neilpatel.com/blog/open-graph-meta-tags/)
 
-- [Why and how to add og-types - 2](https://www.freecodecamp.org/news/what-is-open-graph-and-how-can-i-use-it-for-my-website/))
+- [Why and how to add og-types - 2](https://www.freecodecamp.org/news/what-is-open-graph-and-how-can-i-use-it-for-my-website/)
 
-## Content
+- [Font Size in Markdown](https://meta.stackexchange.com/questions/53800/markdown-extension-for-really-small-tiny-text)
+
+## Content 
 - sorting of pictures done by own knowledge and the app [Flora Incognita](https://play.google.com/store/apps/details?id=com.floraincognita.app.floraincognita&hl=de&gl=US) by the [Technische Universität Ilmenau](https://www.tu-ilmenau.de/)
 
 
 ## Media
 - [picture for icon of the app](https://favpng.com/png_view/symbol-tree-of-life-symbol-yggdrasil-image-png/P1vKGH6K)
+
+[<font size = 4> `back to toc` </font>](#table-of-content)
+
+# Final Words
+
+It was a fun project and the main idea is well visible. For a short time it can already be very interesting. For real good user experience it would need first much more pictures, maybe same or double amount more species. More criteria pictures taken over the year. And overall maybe ten times more pictures.
+Then of course it would be good to add a logic for the settings for difficulty and environment. This could probably done best way by adding a function to and by that changing the routine of [addQuestion() in assets/js/running_game.js, line 180](/assets/js/running_game.js?#L180) and maybe [anotherPicture() in assets/js/running_game.js, line 325](/assets/js/running_game.js?#L325).
