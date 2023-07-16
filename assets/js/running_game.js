@@ -66,11 +66,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function chooseOffers(specie) {
         let offers = [];
         let possible = removeElement(species.slice(), specie);
+        for (let o of offers){console.log(o)};
+        console.log('empty offers');
+        // for (let o of possible){console.log(o.english)};
         while (offers.length < 3) {
             let i = getRandomInt(possible.length);
+            console.log(i);
             // let ad = possible.pop(i);
-            offers.push(selectRandomElement(possible.pop(i)[language]));
+            console.log('decided:',possible[i][language]);
+            offers.push(selectRandomElement(possible[i][language]));
+            possible.splice(i,1);
+            console.log('freshly updated');
+            console.log(offers[offers.length-1]);
+            console.log('empty offers');
         }
+        console.log('offers:');
+        for (let o of offers){console.log(o)};
         return offers;
     }
 
@@ -195,7 +206,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         // collect correct answer and choose offers
         let correctAnswer = chooseCorrectAnswerText(quest.Specie);
-        let offers = chooseOffers(quest.Specie);
+        offers = chooseOffers(quest.Specie);
         hist[indexHist].correctAnswer = correctAnswer;
         hist[indexHist].nrAnswers = offers.length;
 
