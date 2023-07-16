@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             if (q.randImg.length > 0) { break; }
         }
         console.log(`I needed ${count} attempts to find a specie and criteria where at least one image is available`);
-        console.log(`chosen image is ${q.randImg}`);
         return q;
     }
 
@@ -54,7 +53,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
      */
     function chooseCorrectAnswerText(specie) {
         let correctAnswer = selectRandomElement(specie[language]);
-        console.log(`correct answer is: ${correctAnswer}`);
         return correctAnswer;
     }
 
@@ -67,20 +65,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let offers = [];
         let possible = removeElement(species.slice(), specie);
         for (let o of offers){console.log(o)};
-        console.log('empty offers');
         // for (let o of possible){console.log(o.english)};
         while (offers.length < 3) {
             let i = getRandomInt(possible.length);
-            console.log(i);
             // let ad = possible.pop(i);
-            console.log('decided:',possible[i][language]);
             offers.push(selectRandomElement(possible[i][language]));
             possible.splice(i,1);
-            console.log('freshly updated');
-            console.log(offers[offers.length-1]);
-            console.log('empty offers');
         }
-        console.log('offers:');
         for (let o of offers){console.log(o)};
         return offers;
     }
